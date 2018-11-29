@@ -1,0 +1,41 @@
+.snax {
+    .snax-object {
+        margin-bottom: 30px;
+    }
+
+    .snax-object-container {
+        background-color: #e6e6e6;
+
+        iframe {
+            display: block;
+            margin: 0 auto;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+
+    .snax-object-actions {
+        text-align: $right;
+
+        .snax-object-action {
+            @include snax_remove_link_underline;
+
+            display: inline-block;
+            @include box-sizing( border-box );
+            min-width: 32px;
+
+            font-size: 0;
+            text-align: center;
+
+            &:before {
+                font: 17px/32px "snaxicon";
+                content: "\e005";
+            }
+        }
+    }
+}

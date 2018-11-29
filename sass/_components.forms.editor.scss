@@ -1,0 +1,222 @@
+@-moz-keyframes snax-cursor-blink {
+    50%     { border-color: transparent; }
+}
+
+
+
+
+.snax {
+    $_toggle_size: 32px;
+    $_toggle_margin: 10px;
+
+
+
+
+
+    p.snax-fix-firefox {
+        border-#{$left}: 1px solid #000;
+
+        -moz-animation-name: snax-cursor-blink;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
+        -moz-animation-duration: 2.0s;
+    }
+
+    #snax-post-title-editable {
+        margin-bottom: 0 !important;
+    }
+
+
+
+    .snax-insert-button {
+        width: 100%;
+        position: absolute;
+        z-index: 20;
+        #{$left}: 0;
+        #{$right}: auto;
+
+        .snax-toggle {
+            display: block;
+            @include box-sizing( border-box );
+            width: $_toggle_size;
+            height: $_toggle_size;
+            border-width: 1px;
+
+            position: absolute;
+            #{$right}: 100%;
+            #{$left}: auto;
+            top: 0;
+            top: calc( ( #{1.5em} - #{32px} ) / #{2} );
+
+
+            margin-#{$right}: $_toggle_margin;
+
+            text-align: center;
+
+            border-style: solid;
+            color: inherit;
+
+            @include border-radius( 50% );
+            opacity: 0.666;
+
+            &:before {
+                display: block;
+                font: normal 17px/#{$_toggle_size - 2px} "snaxicon";
+                content: "\e014";
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .snax-toggle.snax-expanded {
+            &:before {
+                content: "\e010";
+            }
+        }
+
+        .snax-edit-post-row-media {
+            padding:  20px 20px 10px;
+            margin: 0;
+
+            position: absolute;
+            #{$left}: 0;
+            #{$right}: 0;
+            top: 0;
+            bottom: auto;
+
+            background: #f2f2f2;
+        }
+
+
+
+        .snax-upload {
+            margin-bottom: 0;
+
+            .max-upload-size {
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .snax-insert-button-from-bottom {
+        .snax-edit-post-row-media {
+            top: auto;
+            bottom: -$_toggle_size;
+        }
+    }
+
+    .snax-edit-post-row-media.snax-off {
+        overflow: hidden;
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    p.snax-focused {
+        position: relative;
+
+        .snax-remove {
+            display: block;
+            @include box-sizing( border-box );
+            width: 32px;
+            height: 32px;
+            border-width: 1px;
+
+            position: absolute;
+            #{$right}: 10px;
+            #{$left}: auto;
+            top: 10px;
+
+            font-size: 0;
+            text-align: center;
+
+            border-style: solid;
+            @include border-radius( 50% );
+
+            border-color: transparent;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0, 0.5);
+            color: #fff;
+
+            &:before {
+                font: normal 17px/30px "snaxicon";
+                content: "\e005";
+            }
+        }
+    }
+
+
+
+    .snax-editor-figure {
+        position: relative;
+
+        img { // Maybe class?
+            display: block;
+            margin: 0 auto;
+        }
+
+        input.snax-source {
+            display: block;
+            width: 90%;
+            width: calc( 100% - 20px );
+
+            position: absolute;
+            z-index: 3;
+            #{$left}: 10px;
+            #{$right}: 10px;
+            bottom: 10px;
+
+            border-color: transparent;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0, 0.666);
+            color: #fff;
+        }
+    }
+
+    .snax-editor-figure.snax-focused {
+        background: #e6e6e6;
+    }
+
+
+
+
+    .snax-embed-layer {
+        position: relative;
+
+        /* iFrame blocking overlay */
+        &:after {
+            display: block;
+            position: absolute;
+            z-index: 9;
+            #{$left}: 0;
+            #{$right}: 0;
+            top: 0;
+            bottom: 0;
+
+            cursor: pointer;
+
+            background: transparent;
+
+            content: "";
+        }
+
+        .snax-remove {
+            position: absolute;
+            z-index: 10;
+            #{$right}: 10px;
+            #{$left}: auto;
+            top: 10px;
+        }
+
+        iframe {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    .snax-embed-url {
+        display: none;
+    }
+}
+

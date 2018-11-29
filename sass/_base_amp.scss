@@ -1,0 +1,232 @@
+@import "compass/css3";
+@import "lib.flexbox";
+@import "tools.mixins";
+
+// AMP has 50k custom css limit so below we have only the stuff that we can't live without
+
+    .snax-items {
+        clear: both;
+        margin: 1.5em 0;
+        list-style: none;
+
+        article {
+            clear: both;
+        }
+
+        article + article {
+            margin-top: 3em;
+        }
+    }
+
+    .snax-item-media {
+            margin-bottom: 10px;
+        }
+
+    .snax-item-media {
+        .wp-post-image {
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    .snax-item-media-desc {
+        margin-top: 0.75em;
+        margin-bottom: 0.75em;
+    }
+
+    .snax-item-nav{
+        margin: 1.5em 0;
+    }
+
+    .snax-item-actions {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align:center;
+        align-items: center;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        border-width: 1px 0 0;
+        border-style: solid;
+        border-color: #e6e6e6;
+        margin-bottom: 15px;
+       .snax-voting {
+            margin-#{$right}: auto;
+        }
+    }
+    .snax-voting {
+        display: inline-block;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        vertical-align: middle;
+        text-align: center;
+
+        button{
+            border:0px;
+            display: inline-block;
+            font-size: 0;
+            line-height: 1;
+            vertical-align: middle;
+        }
+
+        .snax-voting-upvote {
+            -ms-flex-order: 2;
+            order: 2;
+            margin-#{$right}: 5px;
+            &:before {
+                display: block;
+                font: 34px/1 "snaxicon";
+                content: "\e006";
+            }
+        }
+
+        .snax-voting-downvote {
+            -ms-flex-order: 4;
+            order: 4;
+            margin-#{$left}: 5px;
+            &:before {
+                display: block;
+                font: 34px/1 "snaxicon";
+                content: "\e007"
+            }
+        }
+        .upvote .snax-voting-upvote:before{
+            color: #ff0036;
+        }
+        .downvote .snax-voting-downvote:before{
+            color: #ff0036;
+        }
+        .snax-voting-upvote:not(:hover):not(.snax-user-voted),
+            .snax-voting-downvote:not(:hover):not(.snax-user-voted) {
+            color: inherit;
+            opacity: 0.333;
+        }
+        .snax-voting-score {
+            display: inline-block;
+            -ms-flex-order: 6;
+            order: 6;
+            margin: 0 10px;
+            line-height: 1.125;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .snax-item-comments{
+        .comment-list{
+        margin-left:0;
+        }
+
+        .comment{
+            list-style-type: none;
+        }
+
+        .comment .reply,
+        .comment .says,
+        .edit-link{
+            display:none;
+        }
+
+        .comment-author, .comment-metadata{
+            display:inline;
+        }
+
+        .comment-meta{
+            margin-bottom:15px;
+        }
+
+        .comment-metadata a{
+            color:inherit;
+        }
+        .comment-author .fn{
+            padding-right:1.5em;
+        }
+
+        .comment-author .avatar{
+            margin-right:10px;
+            vertical-align:middle;
+        }
+
+        .comment-content{
+            padding-left:30px;
+        }
+    }
+    .snax-item-author {
+        margin-#{$right}: 1.5em;
+
+        .avatar {
+            @include snax_remove_link_underline;
+
+            display: inline-block;
+            float: #{$left};
+            margin-#{$right}: 10px;
+        }
+    }
+    // .poll{
+    //     li{
+    //         list-style-type:none;
+    //     }
+    
+    //     .snax-poll-answers-tpl-grid-3 .snax-poll-answers-items,
+    //     .snax-poll-answers-tpl-grid-2 .snax-poll-answers-items{
+    //         display:flex;
+    //         position:relative;
+    //         flex-flow: row wrap;
+    //     }
+        
+    //     .snax-poll-answers-tpl-grid-2 .snax-poll-answers-item{
+    //         width: calc(100% * (1/2) - 20px);
+    //     }
+    //     .snax-poll-answers-tpl-grid-3 .snax-poll-answers-item{
+    //         width: calc(100% * (1/3) - 20px);
+    //     }
+    //     .snax-poll-answers-item{
+    //         padding:10px;
+    //     }
+    //     .snax-poll-answer-label{
+    //         text-align:center;
+    //         background-color: #ededed;
+    //         padding:5px 0;
+    //     }
+    //     .snax-poll-answer-label input{
+    //         display:none;
+    //     }
+    //     .snax-poll-answer-media{
+    //         margin-bottom:0px;
+    //     }
+    //     .snax-poll-answers-tpl-text .snax-poll-answers-item{
+    //         padding:1px;
+    //     }
+    // }
+    
+    // .poll-binary .snax-poll-answers-items{
+    //     display:flex;
+    //     position:relative;
+    //     flex-flow: row wrap;
+    // }
+    // .poll-binary .snax-poll-answers-item{
+    //     width: calc(100% * (1/2) - 20px);
+    // }
+    
+    // .quizzard-answers-yes-no{
+    //     .quizzard-item:nth-child(1) .quizzard-answer-body:before{
+    //         content: "\e01c";
+    //     }
+    //     .quizzard-item:nth-child(2) .quizzard-answer-body:before{
+    //         content: "\e01d";
+    //     }
+    // }
+    
+    // .quizzard-answers-hot-not{
+    //     .quizzard-item:nth-child(1) .quizzard-answer-body:before{
+    //         content: "\e011";
+    //     }
+    //     .quizzard-item:nth-child(2) .quizzard-answer-body:before{
+    //         content: "\e012";
+    //     }
+    // }

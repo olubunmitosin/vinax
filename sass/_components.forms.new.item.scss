@@ -1,0 +1,197 @@
+/**
+ * New item form
+ */
+.snax {
+    .snax-new-item-wrapper {
+        clear: both;
+        position: relative;
+        z-index: 0;
+        padding: 10px 10px 1px;
+        margin: 0 0 30px;
+
+        @media only screen and ( min-width: 1025px ) {
+            & {
+                padding-top: 30px;
+                padding-#{$left}: 30px;
+                padding-#{$right}: 30px;
+            }
+        }
+
+
+        &:before {
+            display: block;
+            position: absolute;
+            z-index: -1;
+            #{$left}: 0;
+            #{$right}: 0;
+            top: 0;
+            bottom: 0;
+
+            content: "";
+
+            background-color: currentColor;
+            opacity: 0.0833;
+        }
+
+        .snax-new-item-title {
+            margin-top: 0;
+        }
+    }
+
+    .snax-new-item-wrapper-title {
+        text-align: center;
+    }
+
+    .snax-new-item-row-legal {
+        font-size: 0.83em;
+
+        label {
+            cursor: pointer;
+        }
+    }
+
+    .snax-new-item-row-title,
+    .snax-new-item-row-description,
+    .snax-new-item-row-embed-code {
+        label {
+            display: block;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            clip: rect( 1px, 1px, 1px, 1px );
+        }
+    }
+
+    .snax-new-item-row-title {
+        input[type=text] {
+            width: 100%;
+            font-size: 1.17em;
+        }
+    }
+
+    .snax-new-item-row-description {
+        textarea {
+            display: block;
+            @include box-sizing( border-box );
+            width: 100%;
+        }
+    }
+
+    .snax-new-item-row-embed-code {
+        textarea {
+            @include box-sizing( border-box );
+            width: 100%;
+        }
+    }
+
+    .snax-new-item-row-source {
+        //margin-top: -32px;
+
+        input[type=checkbox] {
+            margin-#{$right}: 0.333em;
+        }
+
+        label {
+            display: inline-block;
+            @include box-sizing( border-box );
+
+            min-height: 32px;
+            padding: 4px 0;
+            margin-#{$right}: 64px;
+
+            cursor: pointer;
+        }
+
+        input[type=text] {
+            display: none;
+            @include box-sizing( border-box );
+            width: 100%;
+        }
+
+        // Toggle without JavaScript.
+        input[type=checkbox]:checked ~ input[type=text] {
+            display: block;
+        }
+    }
+
+    .snax-new-item-row-referral {
+
+        input[type=checkbox] {
+            margin-#{$right}: 0.333em;
+        }
+
+        label {
+            display: inline-block;
+            @include box-sizing( border-box );
+
+            min-height: 32px;
+            padding: 4px 0;
+
+            cursor: pointer;
+        }
+
+        input[type=text] {
+            display: none;
+            @include box-sizing( border-box );
+            width: 100%;
+        }
+
+        // Toggle without JavaScript.
+        input[type=checkbox]:checked ~ input[type=text] {
+            display: block;
+        }
+    }
+
+    /* Form before any media was even submitted */
+    .snax-form-prior-media {
+        .snax-new-item-row-title,
+        .snax-new-item-row-description,
+        .snax-new-item-row-source,
+        .snax-new-item-row-referral,
+        .snax-new-item-row-legal,
+        .snax-new-item-row-actions {
+            display: none;
+        }
+    }
+
+    /* Form with media inside */
+    .snax-form-with-media {
+        .snax-upload,
+        .snax-new-item-row-embed-code {
+            display: none;
+        }
+    }
+
+    /* Form without any media inside */
+    .snax-form-without-media {
+        .snax-upload-preview-delete {
+            display: none;
+        }
+
+        .snax-new-item-row-source {
+            display: none;
+        }
+    }
+
+    .wp-video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .snax-new-text-item{
+        .snax-text-item-title{
+            width:100%;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+

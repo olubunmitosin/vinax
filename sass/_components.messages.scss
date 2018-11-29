@@ -1,0 +1,25 @@
+.snax {
+    .snax-message {
+        padding: 1em 1em 1px;
+        margin: 0 0 1.5em;
+
+        > p {
+            margin: 0 0 1em;
+        }
+    }
+
+    .snax-message-success {
+        background-color: #efc;
+        color: #250;
+    }
+
+    .snax-message-error {
+        background-color: #fdc;
+        color: #800;
+    }
+
+    .snax-message-warning {
+        background-color: #ffe0af;
+        color: #800;
+    }
+}

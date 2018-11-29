@@ -1,0 +1,286 @@
+.snax {
+    .snax-items {
+        clear: both;
+        margin: 1.5em 0;
+        list-style: none;
+
+        article {
+            clear: both;
+        }
+
+        article + article {
+            margin-top: 3em;
+        }
+    }
+
+    .snax-item {
+        // clearfix
+        &:after {
+            display: table;
+            clear: both;
+            content: "";
+        }
+
+        .snax-item-meta {
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            font-size: 0.83em;
+            line-height: 1.333;
+
+            &:after {
+                display: table;
+                clear: both;
+                content: "";
+            }
+
+            .snax-item-date {
+                display: block;
+            }
+        }
+    }
+
+
+    .snax-item-header {
+        // clearfix
+        &:after {
+          display: table;
+          clear: both;
+          content: "";
+        }
+    }
+
+
+    .snax-item-title {
+        clear: none;
+    }
+
+    .snax-item-parent {
+        clear: both;
+    }
+
+    .snax-item-author {
+        margin-#{$right}: 1.5em;
+
+        .avatar {
+            @include snax_remove_link_underline;
+
+            display: inline-block;
+            float: #{$left};
+            margin-#{$right}: 10px;
+        }
+    }
+
+
+
+    .snax-item-share {
+        position: relative;
+    }
+
+    .snax-item-actions {
+        display: -ms-flexbox;
+        display: flex;
+
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+
+        -ms-flex-align:center;
+        align-items: center;
+
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+
+        border-width: 1px 0 0;
+
+        border-style: solid;
+
+        border-color: #e6e6e6;
+
+        .snax-item-share {
+            display: inline-block;
+            margin-top: 5px;
+            vertical-align: middle;
+        }
+
+        .snax-voting {
+            margin-top: 5px;
+            margin-#{$right}: auto;
+        }
+
+        .snax-item-referral-form {
+            margin: side-values( 5px 0 0 20px );
+        }
+
+        .snax-actions {
+            margin: side-values( 5px 0 0 20px );
+        }
+    }
+
+    .snax-item-share-toggle {
+        font-size: 0.83em;
+
+        color: inherit;
+
+        &:before {
+            display: inline-block;
+            margin-#{$right}: 6px;
+
+            font: 17px/1 "snaxicon";
+
+            vertical-align: middle;
+
+            content: "\e009";
+        }
+    }
+
+    .snax-item-share-content {
+        visibility: hidden;
+        position: absolute;
+        z-index: 99;
+        top: 0;
+        #{$left}: 0;
+        #{$right}: 0;
+    }
+
+
+    .snax-item-media-meta {
+        padding: 2px 10px;
+        margin: 0;
+
+        font-size: 0.83em;
+        line-height: 1.125;
+        text-align: #{$right};
+
+        background-color: rgb(255,255,255);
+        background-color: rgba(255,255,255, 0.5);
+        color: #666;
+
+        a {
+            @include snax_remove_link_underline;
+
+            color: inherit;
+        }
+    }
+
+
+
+    .snax-item {
+        .snax-item-media {
+            margin-bottom: 10px;
+
+            .snax-item-media-container {
+                position: relative;
+            }
+
+            .snax-item-media-link {
+                @include snax_remove_link_underline;
+
+                display: block;
+                @include box-sizing( border-box );
+
+                border-width: 1px;
+
+                border-style: solid;
+
+                border-color: #e6e6e6;
+            }
+
+            .snax-item-media-meta {
+                position: absolute;
+                #{$right}: 1px;
+                #{$left}: auto;
+                bottom: 1px;
+            }
+        }
+    }
+
+    .snax-item-media {
+        .wp-post-image {
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    .snax-item-media-desc {
+        margin-top: 0.75em;
+        margin-bottom: 0.75em;
+    }
+
+
+    .snax-item-embed-code {
+        background-color: #f2f2f2;
+
+        iframe {
+            margin: 0;
+            margin-#{$left}: auto !important;
+            margin-#{$right}: auto !important;
+        }
+    }
+
+
+
+    .snax-item-nav {
+        clear: both;
+        text-align: center;
+    }
+
+    .snax-item-prev {
+        margin-#{$right}: 1em;
+
+        &:before {
+            // &rsaquo; or &lsaquo;
+            // \a0 => &nsbp;
+            content: if-ltr( "\2039\a0", "\a0\203a" );
+        }
+    }
+
+    .snax-item-next {
+        margin-#{$left}: 1em;
+
+        &:after {
+            // &rsaquo; or &lsaquo;
+            // \a0 => &nsbp;
+            content: if-ltr( "\a0\203A", "\2039\a0" );
+        }
+    }
+
+    .snax-item-comments{
+        margin-top: 1em;
+
+        .comment-form textarea{
+            resize: none;
+        }
+
+        .comment .children li{
+            display:none;
+        }
+
+        .comment .children .depth-2:first-child{
+            display:block;
+        }
+
+        .comment .children-visible li{
+            display:block;
+        }
+
+        .snax-item-comment-autor{
+            display:none;
+            margin-bottom:7px;
+        }
+
+    }
+}
+
+
+// Hoverables.
+body.snax-hoverable .snax .snax-item-share:hover,
+.snax .snax-item-share-expanded {
+    .snax-item-share-toggle {
+        visibility: hidden;
+    }
+
+    .snax-item-share-content {
+        visibility: visible;
+    }
+}

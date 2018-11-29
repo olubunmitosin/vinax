@@ -1,0 +1,215 @@
+@import "compass/css3";
+@import "lib.flexbox";
+@import "tools.mixins";
+
+
+
+/**
+ * Icons.
+ */
+@import "components.icons";
+
+
+/**
+ * Actions.
+ *
+ * Dropdown menu with action links.
+ */
+@import "components.actions";
+
+
+
+/**
+ * Lists.
+ *
+ * Regular, ranked and open lists.
+ */
+@import "components.lists";
+
+
+
+/**
+ * Items.
+ *
+ * List and gallery items.
+ */
+@import "components.items";
+
+
+
+
+
+/**
+ * Voting.
+ */
+@import "components.voting";
+
+
+
+/**
+ * Forms.
+ */
+@import "components.forms";
+
+/**
+ * Cards.
+ * Item wrapper intended for the edit mode.
+ */
+@import "components.cards";
+
+/**
+ * Login form.
+ */
+@import "components.forms.login";
+
+/**
+ * WordPress Social Login plugin integration.
+ */
+@import "components.wpsl";
+
+/**
+ * Feedback.
+ *
+ * Overlay with feedback info during complex AJAX calls like uploading images.
+ */
+@import "components.feedback";
+
+
+
+
+
+
+
+/**
+ * Sharing.
+ */
+@import "components.sharing";
+
+
+
+
+/**
+ * Notes.
+ *
+ * Giant blocks with important info.
+ */
+@import "components.notes";
+
+
+
+/**
+ * Messages.
+ *
+ * Standard blocks with some info.
+ */
+@import "components.messages";
+
+
+
+/**
+ * Widgets.
+ */
+@import "components.widgets";
+
+
+
+/**
+ * List (grid)  of formats to choose from on the frontend submission page.
+ */
+@import "components.formats";
+
+
+
+/**
+ * BuddyPress integration.
+ */
+@import "components.buddypress";
+
+
+
+
+
+/**
+ * Objects.
+ */
+@import "components.objects";
+
+
+
+
+
+/**
+ * Posts.
+ *
+ * Common elements regardless of snax format.
+ */
+@import "components.posts";
+
+
+
+/**
+ * Toolbar.
+ *
+ * Available in the preview post mode.
+ */
+@import "components.toolbar";
+
+
+/**
+ * Demo.
+ *
+ * Example posts available on the frontend submission page.
+ * Mainly for the LivePreview site to better showcase what's possible.
+ */
+@import "components.demo";
+
+
+
+/**
+ * Quizzes.
+ */
+@import "components.quizzes";
+
+
+/**
+ * Polls.
+ */
+@import "components.polls";
+
+
+/**
+ * Ads.
+ */
+@import "components.ads";
+
+
+
+
+
+
+
+
+
+
+
+
+.snax-tab-inactive { display: none; }
+
+.snax {
+    .snax-validation-error.snax-forgot-pass-success-message {
+        .snax-validation-tip {
+            display: block;
+            color: #58cc6e;
+
+            &:before {
+                display: none;
+            }
+        }
+    }
+}
+
+
+
+
+
+

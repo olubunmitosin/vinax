@@ -1,0 +1,377 @@
+/* Frontend submission */
+.snax {
+    .snax-form-frontend {
+        &:after {
+            display: table;
+            clear: both;
+            content: "";
+        }
+
+        .snax-edit-post-row-title {
+            margin: 0 0 30px;
+
+            label {
+                overflow: hidden;
+                width: 1px;
+                height: 1px;
+                position: absolute;
+                clip: rect(1px, 1px, 1px, 1px);
+            }
+
+            input[type=text] {
+                @include box-sizing(border-box);
+                max-width: 100%;
+                width: 100%;
+                height: auto; //May be applied to keep consistent height across different browsers.
+                margin: 0;
+
+                font-size: 1.5em;
+                font-weight: 600;
+                color: #000;
+            }
+        }
+
+        .snax-edit-post-row-source {
+            margin: 0 0 30px;
+
+            input[type="text"] {
+                display: block;
+                @include box-sizing( border-box );
+                width: 100%;
+            }
+        }
+
+
+
+        // Referral
+        .snax-edit-post-row-referral {
+            margin: 0 0 30px;
+
+            label {
+                display: inline-block;
+                @include box-sizing( border-box );
+
+                min-height: 32px;
+                padding: 4px 0;
+
+                cursor: pointer;
+            }
+
+            input[type=checkbox] {
+                margin-#{$right}: 0.333em;
+            }
+
+            input[type="text"] {
+                display: none;
+                @include box-sizing( border-box );
+                width: 100%;
+            }
+
+            // Non-JS toggle
+            input[type=checkbox]:checked ~ input[type=text] {
+                display: block;
+            }
+        }
+
+
+
+        .snax-edit-post-row-description {
+            margin: 0 0 30px;
+            position: relative;
+
+            label {
+                overflow: hidden;
+                width: 1px;
+                height: 1px;
+                position: absolute;
+                clip: rect( 1px, 1px, 1px, 1px );
+            }
+
+            textarea {
+                @include box-sizing( border-box );
+                width: 100%;
+                margin: 0;
+            }
+
+            .fr-toolbar.fr-top {
+                border-width: 1px 1px 0 1px;
+                border-style: solid;
+
+                @include box-shadow( none );
+            }
+
+            .fr-box.fr-basic.fr-top .fr-wrapper {
+                border-width: 1px;
+                border-style: solid;
+
+                @include box-shadow( none );
+
+                border-color: #e6e6e6;
+            }
+        }
+
+        #snax-post-title-editable:empty {
+            &:before {
+                content: attr(data-snax-placeholder);
+            }
+        }
+
+        #snax-post-title-editable:focus {
+            &:before {
+                content: " ";
+            }
+        }
+
+        .snax-edit-post-row-content {
+            //border-top: 1px solid #e6e6e6;
+            //padding-top: 20px;
+            padding-bottom: 40px;
+
+            position: relative;
+
+            .mce-tinymce {
+                width: 100% !important;
+                border-width: 0 !important;
+                position: absolute;
+            }
+
+            .mce-edit-focus {
+                outline: none;
+            }
+
+            #wp-snax-post-description-wrap {
+                display: none;
+            }
+        }
+
+        .snax-edit-post-row-categories {
+            margin: 0 0 30px;
+
+            label {
+                display: block;
+                overflow: hidden;
+                width: 1px;
+                height: 1px;
+                position: absolute;
+                clip: rect( 1px, 1px, 1px, 1px );
+            }
+
+            select {
+                @include box-sizing(border-box);
+                max-width: 100%;
+                width: 100%;
+
+            }
+        }
+
+        .snax-edit-post-row-tags {
+            margin: 0 0 20px;
+
+            label {
+                display: block;
+                overflow: hidden;
+                width: 1px;
+                height: 1px;
+                position: absolute;
+                clip: rect( 1px, 1px, 1px, 1px );
+            }
+
+            input[type=text] {
+                @include box-sizing(border-box);
+                max-width: 100%;
+                width: 100%;
+            }
+
+            input.tagit-hidden-field {
+                display: none;
+            }
+
+            ul.tagit {
+                padding: 4px 8px;
+                margin: 0 0 5px;
+            }
+
+            .tagit ~ .snax-hint { visibility: hidden; }
+            .tagit-focus ~ .snax-hint { visibility: visible; }
+
+            .ui-autocomplete {
+                box-sizing: border-box;
+
+                z-index: 3;
+                #{$left}: 0;
+                #{$right}: 0;
+
+                width: auto !important; // jQuery UI position fix.
+                padding: 4px 0;
+            }
+
+            .tagit-autocomplete.ui-menu .ui-menu-item {
+                box-sizing:  border-box;
+                padding: 0 8px;
+            }
+
+            .tagit-autocomplete .ui-state-hover,
+            .tagit-autocomplete .ui-state-focus {
+                border: none;
+            }
+        }
+
+        .snax-edit-post-row-categories + .snax-edit-post-row-tags {
+            margin-top: -20px;
+        }
+
+        .snax-edit-post-row-list-options {
+            margin: 0 0 30px;
+        }
+
+        .snax-edit-post-row-legal {
+            margin: 0 0 15px;
+            font-size: 0.83em;
+
+            label {
+                font-weight: normal;
+                cursor: pointer;
+            }
+        }
+
+        .snax-edit-post-row-actions {
+            margin: 0 0 30px;
+
+            input[type=submit] {
+                width: 100%;
+            }
+        }
+
+        .snax-cancel-submission{
+            margin-top:10px;
+        }
+
+        .snax-draft-post-row-actions {
+            margin: 0 -5px 10px;
+
+            @include display(flex);
+            @include flex-wrap(wrap);
+            @include justify-content(space-between);
+
+            .snax-button {
+                margin-#{$left}: 5px;
+                margin-#{$right}: 5px;
+                @include flex( 1, 1, auto );
+            }
+        }
+    }
+
+    @media only screen and ( min-width: 820px ) {
+        .snax-form-main {
+            float: $left;
+            @include box-sizing( border-box );
+            width: percentage( 2/3 );
+            padding-#{$right}: 15px;
+            margin-#{$left}: auto;
+            margin-#{$right}: auto;
+        }
+
+        .snax-form-side {
+            float: $right;
+            @include box-sizing( border-box );
+            width: percentage( 1/3 );
+            padding-#{$left}: 15px;
+
+            position: -webkit-sticky;
+            position: sticky;
+            top: 10px;
+
+            body.admin-bar & {
+                top: 10px + 32px;
+            }
+        }
+    }
+
+
+
+    .snax-form-frontend-without-media {
+        .snax-form-main {
+            float: none;
+            padding: 0;
+
+            .snax-edit-post-row-media {
+                margin-top: 0;
+                margin-bottom: 30px;
+            }
+
+            .snax-edit-post-row-title,
+            .snax-edit-post-row-description,
+            .snax-edit-post-row-source,
+            .snax-edit-post-row-referral,
+            .snax-cards {
+                display: none;
+            }
+        }
+
+        .snax-form-main {
+            width: 100%;
+        }
+
+        .snax-form-side {
+            display: none;
+        }
+    }
+
+    /* Source - space optimization */
+    .snax-cards + .snax-edit-post-row-source,
+    .snax-edit-post-row-video + .snax-edit-post-row-source,
+    .snax-edit-post-row-audio + .snax-edit-post-row-source,
+    .snax-edit-post-row-image + .snax-edit-post-row-source {
+        margin-top: calc( #{-30px} - 32px);
+
+        input[type=checkbox] {
+            margin-#{$right}: 0.333em;
+        }
+
+        label {
+            display: inline-block;
+            @include box-sizing( border-box );
+
+            min-height: 32px;
+            padding: 4px 0;
+            margin-#{$right}: 64px;
+
+            cursor: pointer;
+        }
+
+        input[type=text] {
+            display: none;
+        }
+
+        input[type=checkbox]:checked ~ input[type=text] {
+            display: block;
+        }
+    }
+
+    .snax-edit-post-row-video{
+        video{
+            margin-bottom:0;
+        }
+        .snax-object-container{
+            background-color: transparent;
+        }
+    }
+
+    .snax-form-frontend-with-removed-media {
+        .snax-edit-post-row-source {
+            display: none;
+        }
+    }
+
+
+
+
+    .snax-edit-post-row-tags {
+        .ui-widget {
+            font-size: 1em;
+        }
+    }
+}
+
+
+

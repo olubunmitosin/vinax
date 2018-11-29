@@ -1,0 +1,581 @@
+@mixin snax_block {
+    position: relative;
+    z-index: 0;
+
+    box-shadow: 0 4px 4px -2px rgba(0,0,0, 0.1);
+
+    // Dynamic background color based on the currentColor value.
+    &:before {
+        display: block;
+
+        border-width: 1px;
+
+        position: absolute;
+        z-index: -1;
+        #{$left}: 0;
+        #{$right}: 0;
+        top: 0;
+        bottom: 0;
+
+        border-style: solid;
+
+        content: "";
+
+        opacity: 0.1667;
+    }
+}
+
+
+.quizzard-icon {
+    display: inline-block;
+    height: 36px;
+    font-size: 0;
+    line-height: 36px;
+    text-decoration: none;
+
+    &:before {
+        display: block;
+        width: 36px;
+        height: 36px;
+
+        font-size: 16px;
+        line-height: 36px;
+        font-family: snaxicon;
+        font-weight: normal;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        text-align: center;
+
+        content: '\f014';
+    }
+
+}
+
+a.quizzard-icon {
+    color: #777;
+
+    &:hover {
+        color: #333;
+    }
+}
+
+
+
+
+.quizzard-icon-delete:before {
+    content: "\e005";
+}
+
+.quizzard-icon-toggle:before {
+    font-family: snaxicon;
+    font-size: 17px;
+    content: "\e022";
+}
+
+.quizzard-question-collapsed{
+    .quizzard-icon-toggle:before {
+        font-family: snaxicon;
+        font-size: 17px;
+        content: "\e023";
+    }
+}
+
+
+// Drag & Drop placeholder.
+.quizzard-state-highlight {
+    height: 84px;
+    border-width: 1px;
+
+    border-style: dashed;
+
+    opacity: 0.1667;
+}
+
+
+/* Tabs */
+.quizzard-tab-wrapper {
+    margin-top: 20px;
+}
+
+.quizzard-tab-content {
+    display: none;
+}
+
+.quizzard-tab-content-active {
+    display: block;
+}
+
+
+
+
+
+/**
+* Questions.
+*/
+.quizzard-questions-header {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    margin: 0 0 20px;
+
+    h2 {
+        display: none;
+        float: $left;
+        margin: side-values( 0 30px 20px 0 );
+    }
+
+    //csstodo
+    .button {
+        padding: 2px 6px;
+        border-width: 1px;
+        margin: 0;
+
+        font-size: 0.83em;
+
+        border-style: solid;
+        border-radius: 3px;
+
+        color: inherit;
+    }
+
+    .button-disabled {
+        cursor: default;
+        opacity: 0.5;
+    }
+
+    .quizzard-questions-answers-set{
+        margin-right:10px;
+    }
+
+    .quizzard-questions-collapse-all {
+        border-top-#{$right}-radius: 0;
+        border-bottom-#{$right}-radius: 0;
+    }
+
+    .quizzard-questions-expand-all {
+        margin-#{$left}: -1px;
+        border-top-#{$left}-radius: 0;
+        border-bottom-#{$left}-radius: 0;
+    }
+}
+
+@media only screen and ( min-width: 1025px ) {
+    .quizzard-questions-header {
+        margin-bottom: 10px;
+    }
+}
+
+
+
+.quizzard-q-items {
+    margin: 0 0 45px;
+    padding: 0;
+
+    list-style: none;
+
+    counter-reset: quizzard-q-items;
+}
+
+.quizzard-q-item {
+    position: relative;
+    margin-bottom: 15px;
+
+    & + .quizzard-next-q-item {
+        margin-top: 30px;
+    }
+}
+
+
+
+
+.quizzard-answer-media-empty .quizzard-delete { display: none; }
+
+
+
+/**
+ * Single question.
+ */
+.quizzard-question {
+    @include snax_block;
+}
+
+
+
+.quizzard-question-header {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    position: relative;
+
+    padding: 18px 12px;
+    border-bottom: 1px solid #eee;
+
+    &:after {
+        display: table;
+        clear: both;
+        content: "";
+    }
+}
+
+@media only screen and ( min-width: 1025px ) {
+    .quizzard-question-header {
+        padding: 12px;
+    }
+}
+
+
+
+
+
+
+.quizzard-question-position {
+    overflow: hidden;
+
+    width: 20px;
+    margin: 0 auto;
+
+    position: absolute;
+    z-index: 2;
+    #{$left}: 0;
+    #{$right}: 0;
+    top: -10px;
+
+
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: bold;
+    text-align: center;
+
+    border-radius: 50%;
+
+    // Background.
+    &:before {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        z-index: 1;
+        #{$left}: 0;
+        #{$right}: 0;
+        top: 0;
+        bottom: 0;
+
+        background-color: #e6e6e6;
+        color: #999;
+
+        content: "";
+    }
+
+    // Counter.
+    &:after {
+        position: relative;
+        z-index: 2;
+
+        counter-increment: quizzard-q-items;
+        content: counter(quizzard-q-items);
+    }
+
+
+    @media only screen and ( min-width: 1025px ) {
+        & {
+            width: 60px;
+            margin-#{$right}: 10px;
+
+            position: static;
+
+            font-size: 24px;
+            line-height: 60px;
+
+            &:before {
+                display: none;
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+.quizzard-question-thumbnail {
+    display: none;
+    float: $left;
+
+    position: relative;
+
+    width: 50px;
+    height: 50px;
+    margin-#{$right}: 12px;
+
+    //background-color: #e6e6e6;
+    //box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset;
+
+    // Dynamic background color based on the currentColor value.
+    &:before {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        #{$left}: 0;
+        #{$right}: 0;
+        top: 0;
+        bottom: 0;
+
+        content: "";
+
+        background-color: currentColor;
+        opacity: 0.1667;
+    }
+
+
+    &:after {
+        display: block;
+        width: 1em;
+        height: 1em;
+        margin: -0.5em 0 0 -0.5em;
+
+        position: absolute;
+        z-index: 2;
+        #{$left}: 50%;
+        #{$right}: auto;
+        top: 50%;
+
+        font-size: 17px;
+        line-height: 1;
+        font-family: snaxicon;
+
+        text-align: center;
+
+        content: "\e01e";
+
+        opacity: 0.666;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+
+        position: relative;
+        z-index: 3;
+    }
+}
+
+
+@media only screen and ( min-width: 1025px ) {
+    .quizzard-question-thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+
+
+.quizzard-question-title {
+    display: block;
+
+    flex-grow: 1;
+
+    float: $left;
+    width: 75%;
+    height: 1.5em;
+    padding: 3px 8px;
+    margin: side-values( 0 4px 0 0 );
+
+    font-size: 1.5em;
+    line-height: 100%;
+}
+
+.quizzard-question-title-yo {
+    display: none;
+
+    flex-grow: 1;
+
+    margin: 0;
+}
+
+.quizzard-question-media {
+    position: relative;
+    min-height: 108px;
+
+    background-color: #e6e6e6;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset;
+
+    &:before {
+        display: block;
+        width: 1em;
+        height: 1em;
+        margin: -0.5em 0 0 -0.5em;
+
+        position: absolute;
+        z-index: 2;
+        #{$left}: 50%;
+        #{$right}: auto;
+        top: 50%;
+
+        font-size: 34px;
+        line-height: 1;
+        font-family: snaxicon;
+
+        text-align: center;
+
+        content: "\e01e";
+
+        color: #ccc;
+    }
+
+    img {
+        display: block;
+        max-width: 320px;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+
+        position: relative;
+        z-index: 3;
+    }
+}
+
+
+
+
+
+.quizzard-question-delete-media {
+    display: none;
+    position: absolute;
+    #{$right}: 0;
+    #{$left}: auto;
+    bottom: 0;
+
+    .quizzard-question-with-media & {
+        display: block;
+    }
+}
+
+
+
+
+
+
+/* Next question */
+.quizzard-next-question {
+    position: relative;
+    z-index: 0;
+
+    // Next question is not draggable.
+    box-shadow: none;
+
+    .quizzard-question-header {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+
+
+        .quizzard-question-title {
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            margin-#{$right}: 6px;
+        }
+    }
+}
+
+
+/* Collapsed question */
+.quizzard-question-collapsed {
+    .quizzard-question-header {
+        cursor: move;
+    }
+
+    .quizzard-question-title,
+    .quizzard-question-body {
+        display: none;
+    }
+
+    .quizzard-question-thumbnail,
+    .quizzard-question-title-yo,
+    .quizzard-next-question .quizzard-question-title {
+        display: block;
+    }
+}
+
+.quizzard-poll{
+    .quizzard-questions{
+        margin-top: -40px;
+    }
+}
+
+@media only screen and ( min-width: 600px ) {
+    .quizzard-poll-binary{
+        .quizzard-answers-without-media {
+            .quizzard-items {
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+
+                -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+
+                -webkit-align-items: stretch;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+
+                margin-#{$left}: -10px;
+                margin-#{$right}: -10px;
+            }
+
+            .quizzard-item {
+                display: inline-block;
+
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+
+                flex: 1 1 auto;
+                -webkit-flex: 1 1 auto;
+                -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+
+                max-width: 300px;
+                width: percentage(1/2);
+                padding: 0 10px;
+                margin: 0 0 20px;
+
+                vertical-align: top;
+            }
+        }
+    }
+}
+
+
+@import "components.forms.new.quiz.answers";
+@import "components.forms.new.quiz.results";

@@ -1,0 +1,13 @@
+.snax {
+    .snax-form-frontend {
+        .snax-edit-post-row-meme-top-text,
+        .snax-edit-post-row-meme-bottom-text {
+            input{
+                @include box-sizing( border-box );
+                width: 100%;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

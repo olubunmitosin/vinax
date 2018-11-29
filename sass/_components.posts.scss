@@ -1,0 +1,60 @@
+.snax-figure-source {
+    font-size: 0;
+
+    &:before {
+        font-size: 13px;
+
+        content: attr(data-snax-placeholder);
+    }
+}
+
+.snax {
+    .snax-date-wrapper,
+    .snax-time-wrapper{
+        display: inline;
+    }
+
+    .snax-date-wrapper-unfriendly,
+    .snax-time-wrapper-friendly {
+        display: none;
+    }
+}
+
+
+
+.snax-post-origin {
+
+}
+
+.snax-post-referral-form {
+    @include box-sizing(border-box);
+
+    padding: 10px;
+    margin-bottom: 1.5rem;
+
+    position: relative;
+
+    text-align: center;
+
+    // Dynamic background color based on the currentColor value.
+    &:before {
+        display: block;
+        position: absolute;
+        z-index: -1;
+        #{$left}: 0;
+        #{$right}: 0;
+        top: 0;
+        bottom: 0;
+
+        content: "";
+
+        background-color: currentColor;
+        opacity: 0.0833;
+    }
+
+    button {
+        min-width: 50%;
+        margin: 0;
+    }
+
+}

@@ -1,0 +1,51 @@
+.snax-quiz-questions-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    counter-reset: snax-quiz-question-counter;
+}
+
+.snax-quiz-question-media{
+    margin-bottom:0px;
+    img{
+        display:block;
+    }
+}
+
+
+.snax-quiz-questions-item {
+    counter-increment: snax-quiz-question-counter;
+}
+
+.snax-quiz-question {
+    margin: 0 0 3em;
+
+
+}
+
+.snax-quiz-question-hidden {
+    display: none;
+}
+
+
+.snax-quiz-question-counter {
+    &:after {
+        content: ". ";
+    }
+}
+
+.snax-quiz-question-counter-value:before {
+    content: counter(snax-quiz-question-counter);
+}
+
+
+.snax-quiz-question-title-hide {
+    .snax-quiz-question-title {
+        clip: rect(1px, 1px, 1px, 1px );
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+}

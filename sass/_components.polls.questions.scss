@@ -1,0 +1,44 @@
+.snax-poll-questions-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    counter-reset: snax-poll-question-counter;
+}
+
+
+.snax-poll-questions-item {
+    counter-increment: snax-poll-question-counter;
+}
+
+.snax-poll-question {
+    margin: 0 0 3em;
+
+
+}
+
+.snax-poll-question-hidden {
+    display: none;
+}
+
+
+.snax-poll-question-counter {
+    &:after {
+        content: ". ";
+    }
+}
+
+.snax-poll-question-counter-value:before {
+    content: counter(snax-poll-question-counter);
+}
+
+
+.snax-poll-question-title-hide {
+    .snax-poll-question-title {
+        clip: rect(1px, 1px, 1px, 1px );
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+}

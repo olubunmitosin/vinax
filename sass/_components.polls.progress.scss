@@ -1,0 +1,57 @@
+.snax-poll-progress {
+    margin: 0 0 1.5em;
+}
+
+.snax-poll-progress-track {
+    overflow-x: hidden;
+    border-radius: 4px;
+
+    background-color: #e6e6e6;
+}
+
+.snax-poll-progress-bar {
+    background-color: #58cc6e;
+}
+
+.snax-poll-progress-value {
+    padding: 0 0.5em;
+
+    text-align: $right;
+
+    color: #fff;
+}
+
+.snax-poll-progress-coins:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+.snax-poll-progress-coin {
+    display: block;
+    float: $left;
+
+    height: 40px;
+    padding: 0 0.333em;
+    margin-#{$right}: 5px;
+
+    line-height: 40px;
+
+    border-radius: 4px;
+
+    background-color: #e6e6e6;
+}
+
+.snax-poll-progress-coin-checked {
+    background-color: #8ac5ff;
+}
+
+.snax-poll-progress-coin-right {
+    background-color: #58cc6e;
+}
+
+.snax-poll-progress-coin-wrong {
+    background-color: #f49595;
+}
+
+

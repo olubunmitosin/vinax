@@ -1,0 +1,110 @@
+.snax {
+    .snax-actions {
+        position: relative;
+        z-index: 3;
+
+        padding: 0.25em 0;
+        margin-top: 0;
+        margin-bottom: 10px;
+
+        font-size: 0.83em;
+        line-height: 1.25;
+
+        .snax-actions-toggle {
+            @include snax_remove_link_underline();
+
+            display: block;
+            height: 24px;
+            margin-#{$left}: auto;
+            margin-#{$right}: 0;
+
+            font-size: 0;
+            line-height: 24px;
+
+            color: inherit;
+
+            opacity: 0.666;
+
+            &:after {
+                display: inline-block;
+                width: 24px;
+
+                vertical-align: middle;
+                font: 24px/1 "snaxicon";
+                content: "\e00e";
+            }
+        }
+
+        .snax-action-links {
+            display: none;
+            @include box-sizing( border-box );
+            width: 160px;
+            padding: 10px 0;
+            margin: 0;
+            border-width: 1px;
+
+            position: absolute;
+            #{$right}: 0;
+            #{$left}: auto;
+
+            list-style: none;
+            border-style: solid;
+
+            box-shadow: 0 2px 4px rgba(0,0,0, .2);
+
+            border-color: #e6e6e6;
+            background-color: #fff;
+
+            li {
+                list-style: none; // Just in case
+            }
+
+            .snax-action-link {
+                @include snax_remove_link_underline;
+                display: block;
+                padding: 4px 15px;
+
+                &:hover {
+                    background-color: #f2f2f2;
+                }
+            }
+        }
+    }
+
+    .snax-actions:hover {
+        .snax-actions-toggle {
+            opacity: 1;
+        }
+    }
+
+    .snax-actions-expanded {
+        .snax-actions-toggle {
+            opacity: 1;
+        }
+
+        .snax-action-links {
+            display: block;
+        }
+    }
+}
+
+
+body.single-snax_item {
+    .snax {
+        .snax-actions {
+            .snax-actions-toggle {
+                font-size: inherit;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,921 @@
+
+
+
+
+
+
+#quizzard-tpl { display: none; }
+
+.quizzard-icon {
+    display: inline-block;
+    height: 36px;
+    font-size: 0;
+    line-height: 36px;
+    text-decoration: none;
+}
+
+a.quizzard-icon {
+    color: #777;
+}
+
+a.quizzard-icon:hover {
+    color: #333;
+}
+
+.quizzard-icon:before {
+    display: block;
+    width: 36px;
+    height: 36px;
+
+    font-size: 16px;
+    line-height: 36px;
+    font-family: FontAwesome;
+    font-weight: normal;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    text-align: center;
+
+    content: '\f014';
+}
+
+.quizzard-icon-delete:before {
+    content: '\f014';
+
+    font-family: dashicons;
+    font-size: 20px;
+    content: "\f182";
+}
+
+.quizzard-icon-toggle:before {
+    content: '\f150';
+
+    font-family: dashicons;
+    font-size: 20px;
+    content: "\f140";
+}
+
+.quizzard-items {
+    clear: both;
+    margin: 0;
+    list-style: none;
+}
+
+.quizzard-item {
+    margin: 0 0 2px;
+}
+
+
+/**
+* Questions.
+*/
+.quizzard-questions-header {
+    margin: 30px 0px 15px;
+}
+
+
+.quizzard-questions-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.quizzard-questions-header h2 {
+    display: none;
+    float: left;
+    margin: 0 30px 20px 0;
+}
+
+.quizzard-questions-header .button {
+    margin: 0;
+}
+
+.quizzard-questions-header .quizzard-questions-collapse-all {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.quizzard-questions-header .quizzard-questions-expand-all {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+
+.quizzard-q-items {
+    counter-reset: quizzard-q-items;
+}
+
+.quizzard-q-item {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+
+.quizzard-answer-media-empty .quizzard-delete { display: none; }
+
+
+
+/**
+ * Single question.
+ */
+.quizzard-question {
+    background: #fff;
+}
+
+.quizzard-question-header {
+    display: flex;
+    align-items: center;
+
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+
+.quizzard-question-header:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+.quizzard-question-position {
+    width: 60px;
+
+    margin-right: 10px;
+    font-size: 1.67em;
+    line-height: 60px;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+.quizzard-question-position:before {
+    counter-increment: quizzard-q-items;
+    content: counter(quizzard-q-items);
+}
+
+.quizzard-question-thumbnail {
+    display: none;
+    float: left;
+
+    position: relative;
+
+    width: 60px;
+    height: 60px;
+    margin-right: 12px;
+
+    background-color: #e6e6e6;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset;
+}
+
+.quizzard-question-thumbnail:before {
+    display: block;
+    width: 1em;
+    height: 1em;
+    margin: -0.5em 0 0 -0.5em;
+
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+
+    font-size: 20px;
+    line-height: 1;
+    font-family: dashicons;
+
+    text-align: center;
+
+    content: "\f306";
+
+    color: #fff;
+}
+
+
+.quizzard-question-thumbnail img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+
+    position: relative;
+    z-index: 3;
+}
+
+.quizzard-question-title-yo {
+    display: none;
+
+    flex-grow: 1;
+
+    margin: 0;
+}
+
+.quizzard-question-media {
+    position: relative;
+    min-height: 108px;
+
+    background-color: #e6e6e6;
+
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset;
+}
+
+.quizzard-question-media:before {
+    display: block;
+    width: 1em;
+    height: 1em;
+    margin: -0.5em 0 0 -0.5em;
+
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+
+    font-size: 40px;
+    line-height: 1;
+    font-family: dashicons;
+
+    text-align: center;
+
+    content: "\f306";
+
+    color: #ccc;
+}
+
+.quizzard-question-media img {
+    display: block;
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+
+    position: relative;
+    z-index: 3;
+}
+
+.quizzard-question-delete-media {
+    display: none;
+    position: absolute;
+    right: 0;
+    left: auto;
+    bottom: 0;
+}
+
+.quizzard-question-with-media .quizzard-question-delete-media {
+    display: block;
+}
+
+
+.quizzard-answers {
+    padding: 24px 24px;
+}
+
+@media only screen and ( min-width: 768px ) {
+    .quizzard-answers {
+        padding-left: 74px;
+    }
+}
+
+
+.quizzard-question-title {
+    display: block;
+
+    flex-grow: 1;
+
+    float: left;
+    width: 75%;
+    height: 1.5em;
+    padding: 3px 8px;
+    margin: 0 4px 0 0;
+
+    font-size: 1.5em;
+    line-height: 100%;
+}
+
+
+
+.quizzard-question-collapsed .quizzard-question-header {
+    cursor: move;
+}
+
+
+
+.quizzard-question-collapsed .quizzard-question-thumbnail {
+    display: block;
+}
+
+
+.quizzard-question-collapsed .quizzard-question-title-yo {
+    display: block;
+}
+
+
+.quizzard-question-collapsed .quizzard-question-title,
+.quizzard-question-collapsed .quizzard-question-body {
+    display: none;
+}
+
+.quizzard-question-collapsed .quizzard-next-question .quizzard-question-title {
+    display: block;
+}
+
+
+.quizzard-next-question .quizzard-question-header {
+    display: flex;
+    align-items: center;
+}
+
+.quizzard-next-question .quizzard-question-header .quizzard-question-title {
+    flex: 1 1 auto;
+
+    height: 28px;
+    margin-right: 4px;
+}
+
+.quizzard-question-delete,
+.quizzard-question-toggle-state {
+    //position: absolute;
+    //right: 0;
+    //left: auto;
+    //top: 0;
+}
+
+.quizzard-question-delete {
+    //right: 36px;
+}
+
+
+
+
+
+
+
+/**
+ * Answers.
+ */
+.quizzard-answers-header {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.quizzard-answers-header h3 {
+    margin: 0 30px 20px 0;
+    float: left;
+}
+
+
+
+
+
+
+
+/**
+ * Single answer.
+ */
+.quizzard-answer {
+    box-sizing: border-box;
+
+    position: relative;
+
+    width: 100%;
+    max-width: 640px;
+    padding: 12px;
+
+    cursor: move;
+
+    background: #f1f1f1;
+}
+
+.quizzard-answer-header {
+    position: relative;
+}
+
+.quizzard-answers-with-media .quizzard-answer {
+    padding: 0;
+}
+
+.quizzard-answers-with-media .quizzard-answer-header {
+    min-height: 36px;
+    padding: 0 12px;
+}
+
+.quizzard-answers-with-media .quizzard-answer-body {
+    padding: 12px;
+}
+
+.quizzard-next-answer {
+    //background-color: #e6e6e6;
+}
+
+.quizzard-next-answer .quizzard-answer-body {
+    display: flex;
+    align-items: center;
+}
+
+.quizzard-next-answer .quizzard-answer-body .quizzard-answer-title {
+    flex: 1 1 auto;
+
+    height: 28px;
+    margin-right: 4px;
+}
+
+
+@media only screen and ( min-width: 600px ) {
+    .quizzard-answers-with-media .quizzard-items {
+        display: flex;
+        flex-wrap: wrap;
+
+        align-items: stretch;
+    }
+
+    .quizzard-answers-with-media .quizzard-item {
+        display: inline-block;
+
+        display: flex;
+        flex: 1 1 auto;
+
+        max-width: 300px;
+        width: 300px;
+        margin-right: 30px;
+        margin-bottom: 30px;
+
+        vertical-align: top;
+    }
+}
+
+/*
+.quizzard-answer-correct {
+    font-size: 0;
+}
+
+.quizzard-answer-correct-label {
+
+}
+
+.quizzard-answer-correct-label input[type=checkbox] {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+
+    opacity: 0;
+}
+
+.quizzard-answer-correct-label span {
+    margin-right: 12px;
+    overflow: hidden;
+
+    color: transparent;
+}
+
+.quizzard-answer-correct-label span:before {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "FontAwesome";
+
+    text-align: center;
+
+    color: #999;
+
+    content: "\f204";
+}
+
+.quizzard-answer-correct-label input[checked] + span {
+    color: #53a900;
+}
+
+.quizzard-answer-correct-label input[checked] + span:before {
+    color: inherit;
+    content: "\f205";
+}
+*/
+
+
+.quizzard-answer-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.quizzard-answer-media {
+    overflow: hidden;
+    position: relative;
+    height: 0;
+    min-height: 0 !important;
+    padding-bottom: 100%;
+}
+
+.quizzard-answer-media:before {
+    display: block;
+    width: 1em;
+    height: 1em;
+    margin: -0.5em 0 0 -0.5em;
+
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+
+    font-size: 40px;
+    line-height: 1;
+    font-family: Dashicons;
+
+    text-align: center;
+
+    content: "\f306";
+
+    color: #ccc;
+}
+
+.quizzard-answer-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    position: relative;
+    z-index: 3;
+}
+
+.quizzard-answer-delete-media {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    left: auto;
+    bottom: 0;
+}
+
+.quizzard-answer-with-media .quizzard-answer-delete-media {
+    display: inline-block;
+}
+
+
+
+
+.quizzard-answer-media {
+    min-height: 108px;
+    border-width: 1px 0;
+
+    border-style: solid;
+
+    border-color: #e6e6e6;
+    background-color: #e6e6e6;
+
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset;
+}
+
+.quizzard-next-answer .quizzard-answer-media {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+
+
+.quizzard-answers-without-media .quizzard-answer-media { display: none; }
+.quizzard-question-media-empty .quizzard-delete { display: none; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a.quizzard-questions-reorder-on { color: #ff0000 !important; }
+
+.quizzard-state-highlight {
+    height: 84px;
+    border-width: 1px;
+
+    border-style: dashed;
+
+    border-color: #ccc;
+}
+
+.quizzard-next-question input.quizzard-first { display: none; }
+.quizzard-next-question input.quizzard-next { display: inline; }
+
+.quizzard-next-question.quizzard-first-question input.quizzard-first { display: inline; }
+.quizzard-next-question.quizzard-first-question input.quizzard-next { display: none; }
+
+
+
+
+
+.quizzard-answers-toggle-media {
+    text-decoration: none;
+}
+
+.quizzard-answers-toggle-media:before {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+
+    vertical-align: middle;
+
+    font-size: 20px;
+    line-height: 24px;
+    font-family: dashicons;
+    content: "\f306";
+}
+
+
+
+/**
+ * Results.
+ */
+.quizzard-results-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 30px 0px 15px;
+}
+
+.quizzard-results-header h2 {
+    display: none;
+    float: left;
+    margin: 0 30px 20px 0;
+}
+
+.quizzard-results-header .button {
+    margin: 0 3px;
+}
+
+
+
+.quizzard-r-items {
+    clear: both;
+    counter-reset: quizzard-r-items;
+}
+
+.quizzard-r-item {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+
+
+/**
+ * Single result.
+ */
+.quizzard-result {
+    background: #fff;
+}
+
+.quizzard-result-header {
+    display: flex;
+    align-items: center;
+
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+
+.quizzard-result-header:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+.quizzard-result-range {
+    display: none;
+    width: 120px;
+
+    margin-right: 10px;
+    font-size: 1.17em;
+    line-height: 60px;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+.quizzard-result-range-high:after {
+    content: "%";
+}
+
+
+
+.quizzard-result-range-edit {
+    margin-right: 10px;
+}
+.quizzard-result-range-edit:after {
+    content: "%";
+}
+
+input.quizzard-result-range-low,
+input.quizzard-result-range-high {
+    width: 5em;
+}
+
+.quizzard-result-collapsed .quizzard-result-range {
+    display: block;
+}
+
+.quizzard-result-collapsed .quizzard-result-range-edit {
+    display: none;
+}
+
+
+
+
+.quizzard-result-thumbnail {
+    display: none;
+    float: left;
+
+    position: relative;
+
+    width: 60px;
+    height: 60px;
+    margin-right: 12px;
+
+    background-color: #e6e6e6;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset;
+}
+
+.quizzard-result-thumbnail:before {
+    display: block;
+    width: 1em;
+    height: 1em;
+    margin: -0.5em 0 0 -0.5em;
+
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+
+    font-size: 20px;
+    line-height: 1;
+    font-family: dashicons;
+
+    text-align: center;
+
+    content: "\f306";
+
+    color: #fff;
+}
+
+
+.quizzard-result-thumbnail img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+
+    position: relative;
+    z-index: 3;
+}
+
+.quizzard-result-title-yo {
+    display: none;
+
+    flex-grow: 1;
+
+    margin: 0;
+}
+
+.quizzard-result-body {
+    padding: 12px;
+}
+
+.quizzard-result-media {
+    position: relative;
+    min-height: 108px;
+
+    background-color: #e6e6e6;
+
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset;
+}
+
+.quizzard-result-media:before {
+    display: block;
+    width: 1em;
+    height: 1em;
+    margin: -0.5em 0 0 -0.5em;
+
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+
+    font-size: 40px;
+    line-height: 1;
+    font-family: dashicons;
+
+    text-align: center;
+
+    content: "\f306";
+
+    color: #ccc;
+}
+
+.quizzard-result-media img {
+    display: block;
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+
+    position: relative;
+    z-index: 3;
+}
+
+.quizzard-result-delete-media {
+    display: none;
+    position: absolute;
+    right: 0;
+    left: auto;
+    bottom: 0;
+}
+
+.quizzard-result-with-media .quizzard-result-delete-media {
+    display: block;
+}
+
+
+.quizzard-result-title {
+    display: block;
+
+    flex-grow: 1;
+
+    float: left;
+    height: 1.5em;
+    padding: 3px 8px;
+    margin: 0 4px 0 0;
+
+    font-size: 1.5em;
+    line-height: 100%;
+}
+
+.quizzard-result-description {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+
+.quizzard-result-collapsed .quizzard-result-header {
+    cursor: move;
+}
+
+.quizzard-result-collapsed .quizzard-result-thumbnail {
+    display: block;
+}
+
+.quizzard-result-collapsed .quizzard-result-title-yo {
+    display: block;
+}
+
+.quizzard-result-collapsed .quizzard-result-title,
+.quizzard-result-collapsed .quizzard-result-body {
+    display: none;
+}
+
+.quizzard-result-collapsed .quizzard-next-result .quizzard-result-title {
+    display: block;
+}
+
+
+.quizzard-next-result .quizzard-result-header {
+    display: flex;
+    align-items: center;
+}
+
+.quizzard-next-result .quizzard-result-header .quizzard-result-title {
+    flex: 1 1 auto;
+
+    height: 28px;
+    margin-right: 4px;
+}
+
+.quizzard-result-media-empty .quizzard-delete { display: none; }
+
+
+
+/* Tabs */
+.quizzard-tab-wrapper {
+    margin-top: 20px;
+}
+
+.quizzard-tab-content {
+    display: none;
+}
+
+.quizzard-tab-content-active {
+    display: block;
+}

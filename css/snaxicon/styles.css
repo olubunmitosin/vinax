@@ -1,0 +1,222 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "snaxicon";
+  src:url("fonts/snaxicon.eot");
+  src:url("fonts/snaxicon.eot?#iefix") format("embedded-opentype"),
+    url("fonts/snaxicon.woff") format("woff"),
+    url("fonts/snaxicon.ttf") format("truetype"),
+    url("fonts/snaxicon.svg#snaxicon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "snaxicon" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="snaxicon-"]:before,
+[class*=" snaxicon-"]:before {
+  font-family: "snaxicon" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.snaxicon-image:before {
+ content: "\e000";
+}
+.snaxicon-gallery:before {
+ content: "\e001";
+}
+.snaxicon-embed:before {
+ content: "\e002";
+}
+.snaxicon-personality-quiz:before {
+ content: "\e003";
+}
+.snaxicon-spinner:before {
+ content: "\e004";
+}
+.snaxicon-delete:before {
+ content: "\e005";
+}
+.snaxicon-angle-up:before {
+ content: "\e006";
+}
+.snaxicon-angle-down:before {
+ content: "\e007";
+}
+.snaxicon-success:before {
+ content: "\e008";
+}
+.snaxicon-share:before {
+ content: "\e009";
+}
+.snaxicon-facebook:before {
+ content: "\e00a";
+}
+.snaxicon-twitter:before {
+ content: "\e00b";
+}
+.snaxicon-pinterest:before {
+ content: "\e00c";
+}
+.snaxicon-more-horizontal:before {
+ content: "\e00d";
+}
+.snaxicon-more-vertical:before {
+ content: "\e00e";
+}
+.snaxicon-warning:before {
+ content: "\e00f";
+}
+.snaxicon-close:before {
+ content: "\e010";
+}
+.snaxicon-arrow-up:before {
+ content: "\e011";
+}
+.snaxicon-arrow-down:before {
+ content: "\e012";
+}
+.snaxicon-text:before {
+ content: "\e013";
+}
+.snaxicon-add:before {
+ content: "\e014";
+}
+.snaxicon-meme:before {
+ content: "\e015";
+}
+.snaxicon-list:before {
+ content: "\e016";
+}
+.snaxicon-open-list:before {
+ content: "\e017";
+}
+.snaxicon-open-ranked-list:before {
+ content: "\e018";
+}
+.snaxicon-ranked-list:before {
+ content: "\e019";
+}
+.snaxicon-trivia-quiz:before {
+ content: "\e01a";
+}
+.snaxicon-poll:before {
+ content: "\e01b";
+}
+.snaxicon-link:before {
+ content: "\e01c";
+}
+.snaxicon-missing-media:before {
+ content: "\e01e";
+}
+.snaxicon-q-a-tpl-text:before {
+ content: "\e01f";
+}
+.snaxicon-q-a-tpl-grid-2:before {
+ content: "\e020";
+}
+.snaxicon-q-a-tpl-grid-3:before {
+ content: "\e021";
+}
+.snaxicon-expand:before {
+ content: "\e022";
+}
+.snaxicon-collapse:before {
+ content: "\e023";
+}
+.snaxicon-edit:before {
+ content: "\e024";
+}
+.snaxicon-upload:before {
+ content: "\e025";
+}
+.snaxicon-audio:before {
+ content: "\e026";
+}
+.snaxicon-video:before {
+ content: "\e027";
+}
+.snaxicon-youtube:before {
+ content: "\e028";
+}
+.snaxicon-instagram:before {
+ content: "\e029";
+}
+.snaxicon-vimeo:before {
+ content: "\e02a";
+}
+.snaxicon-spotify:before {
+ content: "\e02b";
+}
+.snaxicon-soundcloud:before {
+ content: "\e02c";
+}
+.snaxicon-twitch:before {
+ content: "\e02d";
+}
+.snaxicon-vk:before {
+ content: "\e02e";
+}
+.snaxicon-dailymotion:before {
+ content: "\e02f";
+}
+.snaxicon-giphy:before {
+ content: "\e030";
+}
+.snaxicon-imgur:before {
+ content: "\e031";
+}
+.snaxicon-mixcloud:before {
+ content: "\e032";
+}
+.snaxicon-poll-binary:before {
+ content: "\e033";
+}
+.snaxicon-poll-versus:before {
+ content: "\e034";
+}
+.snaxicon-vote-crossmark:before {
+ content: "\e035";
+}
+.snaxicon-vote-love:before {
+ content: "\e036";
+}
+.snaxicon-vote-thumb-down:before {
+ content: "\e037";
+}
+.snaxicon-vote-thumb-up:before {
+ content: "\e038";
+}
+.snaxicon-question:before {
+ content: "\e040";
+}
+.snaxicon-question-checkmark:before {
+ content: "\e041";
+}
+.snaxicon-question-crossmark:before {
+ content: "\e042";
+}
+.snaxicon-vote-up:before {
+ content: "\e043";
+}
+.snaxicon-vote-down:before {
+ content: "\e044";
+}

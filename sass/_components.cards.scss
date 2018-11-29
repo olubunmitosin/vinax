@@ -1,0 +1,327 @@
+$_position_size: 32px;
+$_button_size: 32px;
+
+.snax {
+    .snax-card {
+        @include box-sizing( border-box );
+        position: relative;
+        max-width: 638px + $_button_size + $_position_size;
+        padding: 0 $_button_size 0 $_position_size;
+        margin: 0 auto 30px;
+
+
+        @include transition(
+            border-color 0.375s ease-in-out,
+            background-color 0.375s ease-in-out,
+            color 0.375s ease-in-out
+        );
+    }
+
+    .snax-card-body {
+        padding: 10px 10px 1px 10px;
+        border-width: 1px;
+
+        border-style: solid;
+
+        border-color: #f2f2f2;
+        background: #f2f2f2;
+
+        .snax-card-focus & {
+            border-color: #e6e6e6;
+            background: #fff;
+        }
+    }
+
+
+    @media only screen and ( min-width: 1025px ) {
+        .snax-card-body {
+            padding: 30px 30px 1px 30px;
+        }
+    }
+
+    .snax-card-title {
+        label {
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            clip: rect(1px, 1px, 1px, 1px);
+        }
+
+        input[type=text] {
+            display: block;
+            @include box-sizing( border-box );
+            width: 100%;
+            margin: 0;
+        }
+    }
+
+    .snax-card-media {
+        margin: 0 0 15px;
+
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    .snax-card-source {
+        margin-top: -15px;
+
+        input[type=checkbox] {
+            margin-#{$right}: 0.333em;
+        }
+
+        label {
+            display: inline-block;
+            @include box-sizing( border-box );
+
+            padding: 4px 0;
+            min-height: 32px;
+            margin-#{$right}: 64px;
+
+            cursor: pointer;
+
+            vertical-align: middle;
+        }
+
+        input[type=text] {
+            display: none;
+            @include box-sizing( border-box );
+            width: 100%;
+            margin: 0;
+        }
+
+        input[type=checkbox]:checked ~ input[type=text] {
+            display: block;
+        }
+    }
+
+
+
+    .snax-card-referral {
+        label {
+            display: inline-block;
+            @include box-sizing( border-box );
+
+            padding: 4px 0;
+            min-height: 32px;
+
+            cursor: pointer;
+
+            vertical-align: middle;
+        }
+
+        input[type=checkbox] {
+            margin-#{$right}: 0.333em;
+        }
+
+
+        input[type=text] {
+            display: none;
+            @include box-sizing( border-box );
+            width: 100%;
+            margin: 0;
+        }
+
+        input[type=checkbox]:checked ~ input[type=text] {
+            display: block;
+        }
+    }
+
+
+
+    .snax-card-description {
+        position: static;
+
+        label {
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            clip: rect(1px, 1px, 1px, 1px);
+        }
+
+        textarea {
+            display: block;
+            @include box-sizing( border-box );
+            width: 100%;
+            margin: 0;
+        }
+    }
+
+    //.snax-card-blur {
+    //}
+
+    $_arrow_size: 32px;
+    .snax-card {
+        .snax-card-up,
+        .snax-card-down {
+            @include snax_remove_link_underline;
+
+            display: block;
+            @include box-sizing( border-box );
+            overflow: hidden;
+            width: $_arrow_size;
+            height: $_arrow_size;
+
+            text-align: center;
+            font: 17px/#{$_button_size} "snaxicon";
+
+            @include transition(
+                            border-color 0.375s ease-in-out,
+                            background-color 0.375s ease-in-out,
+                            color 0.375s ease-in-out,
+                            opacity 0.375s ease-in-out
+            );
+
+            border-color: transparent;
+            background-color: transparent;
+            color: inherit;
+
+            opacity: 0.666;
+
+            &:before {
+                display: block;
+                width: $_arrow_size;
+                height: $_arrow_size;
+
+                content: "\e006";
+            }
+
+            &:hover {
+                //border-color: #808080;
+                //background-color: #808080;
+                //color: #fff;
+
+                opacity: 0.999;
+            }
+        }
+
+        .snax-card-down {
+            &:before {
+                content: "\e007";
+            }
+        }
+    }
+
+
+    .snax-card:first-of-type {
+        .snax-card-up {
+            pointer-events: none;
+            opacity: 0.1666;
+        }
+    }
+
+    .snax-card:last-of-type {
+        .snax-card-down {
+            pointer-events: none;
+            opacity: 0.1666;
+        }
+    }
+
+    .snax-card {
+        .snax-card-action {
+            @include snax_remove_link_underline;
+
+            display: block;
+            overflow: hidden;
+            width: $_button_size;
+            height: $_button_size;
+
+            text-align: center;
+            font: 17px/#{$_button_size} "snaxicon";
+
+            @include transition(
+                            border-color 0.375s ease-in-out,
+                            background-color 0.375s ease-in-out,
+                            color 0.375s ease-in-out,
+                            opacity 0.375s ease-in-out
+            );
+
+            color: inherit;
+            opacity: 0.666;
+
+            &:before {
+                display: block;
+                width: $_button_size;
+                height: $_button_size;
+            }
+
+            &:hover {
+                opacity: 0.999;
+            }
+        }
+
+        .snax-card-action-delete:before { content: "\e005"; }
+    }
+
+
+    .snax-card-position {
+        display: block;
+        @include box-sizing( border-box );
+        width: $_position_size;
+        padding: 6px 0;
+
+        position: absolute;
+        z-index: 1;
+        #{$right}: auto;
+        #{$left}: 0;
+        top: 30px;
+
+        text-align: center;
+        font-size: 1.25em;
+    }
+
+
+    .snax-card-header {
+        position: absolute;
+        #{$left}: auto;
+        #{$right}: 0;
+
+        &:after {
+            display: table;
+            clear: both;
+            content: "";
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

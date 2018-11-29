@@ -1,0 +1,331 @@
+@-webkit-keyframes snax-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes snax-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+
+
+.js .hide-if-js {
+    display: none;
+}
+
+
+
+.snax {
+    .fr-toolbar {
+        border-top-width: 1px;
+        border-color: #e6e6e6;
+    }
+
+    .fr-box.fr-basic.fr-top .fr-wrapper {
+
+    }
+
+    .fr-box {
+        .fr-counter {
+            font-family: sans-serif;
+        }
+    }
+
+    .snax-hint {
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        font-size: 0.83em;
+        line-height: 1.25;
+    }
+
+    .snax-error {
+        border: 1px solid red !important;
+    }
+
+    .snax-validation-tip {
+        display: none;
+    }
+
+    .snax-validation-error {
+        .snax-validation-tip {
+            display: block;
+            color: red;
+
+            &:before {
+                margin-#{$right}: 0.5em;
+
+                font: 14px/1 "FontAwesome";
+
+                content: "\f071";
+                content: "\f06a";
+            }
+        }
+
+        input[type=text],
+        textarea {
+            border-color: red;
+            background-color: #fff2f2;
+        }
+
+        input[type=text]:focus,
+        textarea:focus {
+            border-color: red;
+        }
+    }
+
+    .snax-upload {
+        #media-items {
+            display: none;
+        }
+    }
+
+    .snax-upload-preview {
+        position: relative;
+
+        &:after {
+            display: table;
+            clear: both;
+            content: "";
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .snax {
+        .snax-upload-preview-delete {
+            float: $right;
+
+            font-size: 0;
+
+            &:before {
+                display: inline-block;
+                width: 32px;
+
+                text-align: center;
+                font: 17px/32px "snaxicon";
+
+                content: "\e005";
+            }
+        }
+    }
+
+    /* Plupload wrapper */
+    .snax-upload {
+        position: relative;
+        margin-bottom: 1.5em;
+
+        text-align: center;
+
+        &:after {
+            display: block;
+            margin-top: 1.5em;
+            content: "";
+        }
+
+        #drag-drop-area {
+            @include box-sizing( border-box );
+            padding: 40px 30px 10px;
+            border-width: 2px;
+
+            border-style: dashed;
+
+            border-color: #ccc;
+
+            p {
+                margin: 0;
+            }
+
+            .drag-drop-info {
+                font-size: 1.17em;
+                font-weight: 500;
+            }
+
+            .drag-drop-buttons {
+                margin: 0.5em 0 30px;
+            }
+        }
+
+        .max-upload-size {
+            margin-top: 0.25em;
+            font-size: 0.83em;
+            opacity: 0.666;
+        }
+    }
+
+    .snax-form-side {
+        .snax-edit-post-row-media {
+            margin-bottom: 30px;
+        }
+
+        #drag-drop-area {
+            padding-top: 20px;
+            border-width: 1px;
+
+            .drag-drop-buttons {
+                margin-bottom: 10px;
+            }
+
+            input[type=button] {
+                font-size: 0.83em;
+            }
+        }
+    }
+
+
+    .snax-legal-link {
+        @include snax_remove_link_underline;
+
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        overflow: hidden;
+
+        vertical-align: middle;
+
+        @include border-radius( 50% );
+
+        @include transition(
+                        border-color 0.375s ease-in-out,
+                        background-color 0.375s ease-in-out,
+                        color 0.375s ease-in-out,
+                        opacity 0.375s ease-in-out
+        );
+
+        border-color: #c6f0ff;
+        background-color: #c6f0ff;
+        color: #00688e;
+
+        &:before {
+            display: block;
+            width: 24px;
+            height: 24px;
+
+            text-align: center;
+
+            font: italic 16px/24px Georgia, serif;
+            content: "i";
+        }
+
+        &:hover {
+            border-color: #00688e;
+            background-color: #00688e;
+            color: #fff;
+        }
+    }
+
+
+
+    .snax-media {
+        position: relative;
+    }
+
+    $_icon_size: 48px;
+    .snax-upload-icon {
+        display: none;
+        margin-top: -$_icon_size/2;
+
+        position: absolute;
+        z-index: 9;
+        #{$left}: 0;
+        #{$right}: 0;
+        top: 50%;
+
+        font-size: 13px;
+        line-height: 1.25;
+        text-align: center;
+
+        &:before {
+            display: block;
+            width: $_icon_size;
+            height: $_icon_size;
+            margin: 0 auto;
+
+            font: 34px/#{$_icon_size} "snaxicon";
+            content: "\e004";
+        }
+    }
+
+    .snax-new-item-wrapper-processing {
+        .snax-upload,
+        .snax-new-item-row-embed-code {
+            visibility: hidden;
+        }
+
+        .snax-upload-icon {
+            display: block;
+
+            &:before {
+                -webkit-animation: snax-spin 2s infinite linear;
+                animation: snax-spin 2s infinite linear;
+            }
+        }
+    }
+
+
+    .snax-new-embeds-url {
+        margin-bottom: 10px;
+
+        textarea {
+            display: block;
+            @include box-sizing( border-box );
+            width: 100%;
+            margin: 0;
+        }
+    }
+
+
+    .snax-new-embeds-actions {
+        display: none;
+        text-align: $right;
+    }
+
+    .snax-item-comments {
+        .snax-upload-icon {
+            display: block;
+            margin: 24px;
+            position: relative;
+
+            &:before {
+                -webkit-animation: snax-spin 2s infinite linear;
+                animation: snax-spin 2s infinite linear;
+            }
+        }
+    }
+    .mc4wp-checkbox-wp-comment-form{
+        display:none;
+    }
+}
+
+
+
+
+
+
+@import "components.forms.new.tabs";
+
+
+@import "components.forms.edit.post";
+@import "components.forms.edit.post.meme";
+
+
+
+
+@import "components.forms.new.link";
+@import "components.forms.new.item";
+@import "components.forms.editor";
+@import "components.forms.upload";

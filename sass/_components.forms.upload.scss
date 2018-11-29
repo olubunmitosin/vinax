@@ -1,0 +1,124 @@
+.snax {
+
+    .snax-form-frontend-without-media{
+        .snax-edit-post-row-media-bottom{
+            display:none;
+        }
+    }
+
+    .snax-media-upload-form{
+        border: 2px dashed #e6e6e6;
+
+
+        .button{
+            padding: 1em 2em;
+        }
+
+        .snax-drag-drop-info{
+            margin-top:32px;
+            margin-bottom:0px;
+            font-size: 24px;
+            font-weight: bold;
+
+            &:before {
+                display: block;
+                font-size: 56px;
+                line-height: 1;
+                font-family: snaxicon;
+                font-weight: 300;
+
+                content: "\e025";
+            }
+        }
+
+        .snax-drag-drop-info + p{
+            opacity:0.4;
+        }
+
+        .snax-max-upload-size{
+            font-size:13px;
+            opacity:0.666;
+        }
+
+        .snax-load-image-from-url-area,
+        .snax-load-from-embed-area {
+            display:none;
+            margin:1em;
+            .button{
+                margin-top:1em;
+            }
+        }
+    }
+
+    .snax-supported-services{
+        font-size:13px;
+        opacity:0.666;
+
+        .snax-supported-fb:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e00a";
+            margin-right:20px;
+        }
+        .snax-supported-twitter:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e00b";
+            margin-right:20px;
+        }
+        .snax-supported-youtube:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e028";
+            margin-right:20px;
+        }
+        .snax-supported-instagram:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e029";
+            margin-right:20px;
+        }
+        .snax-supported-vimeo:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e02a";
+            margin-right:20px;
+        }
+        .snax-supported-spotify:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e02b";
+            margin-right:20px;
+        }
+        .snax-supported-soundcloud:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e02c";
+            margin-right:20px;
+        }
+        .snax-supported-twitch:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e02d";
+            margin-right:20px;
+        }
+        .snax-supported-vk:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e02e";
+            margin-right:20px;
+        }
+        .snax-supported-dailymotion:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e02f";
+            margin-right:20px;
+        }
+        .snax-supported-giphy:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e030";
+            margin-right:20px;
+        }
+        .snax-supported-imgur:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e031";
+            margin-right:20px;
+        }
+        .snax-supported-mixcloud:before {
+            font: normal 20px/30px "snaxicon";
+            content: "\e032";
+            margin-right:20px;
+        }
+    }
+
+}

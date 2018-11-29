@@ -1,0 +1,54 @@
+.snax-toolbar {
+    padding: 10px;
+
+    position: fixed;
+    z-index: 999;
+    #{$left}: 0;
+    #{$right}: 0;
+    top: auto;
+    bottom: 0;
+
+    text-align: $right;
+
+    background-color: #ccc;
+
+    > a {
+        display: inline-block;
+        height: 60px;
+        padding: 0 40px;
+
+        font-size: 20px;
+        line-height: 60px;
+        text-align: center;
+
+        @include border-radius( 30px );
+
+        border-color: #808080;
+        background-color: #808080;
+        color: #fff;
+
+        &:hover {
+            border-color: #000;
+            background-color: #000;
+            color: #fff;
+        }
+
+        @include transition(
+                        border-color 0.3s ease-in-out,
+                        background-color 0.3s ease-in-out,
+                        color 0.3s ease-in-out,
+                        opacity 0.3s ease-in-out
+        );
+
+        &:before {
+            display: inline-block;
+            margin-#{$right}: 10px;
+
+            vertical-align: middle;
+
+            font-size: 34px;
+            font-family: "snaxicon";
+            content: "\e024";
+        }
+    }
+}

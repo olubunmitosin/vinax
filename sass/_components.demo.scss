@@ -1,0 +1,107 @@
+.snax {
+    .snax-demo-format {
+        display: none;
+        clear: both;
+        text-align: center;
+
+        .snax-demo-format-content {
+            @include snax_remove_link_underline;
+
+            display: block;
+            margin-bottom: 10px;
+
+            font-size: 0;
+
+            span {
+                display: inline-block;
+                max-width: 60px;
+
+                border: 2px solid #fff;
+                box-shadow: 2px 2px 2px rgba(0,0,0, 0.1);
+                background-color: #fff;
+
+                > img {
+                    display: block;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .snax-form-frontend-without-media {
+        .snax-demo-format {
+            display: block;
+        }
+    }
+
+    .snax-demo-format-image,
+    .snax-demo-format-embed {
+        .snax-demo-format-content {
+            display: table;
+            margin-#{$left}: auto;
+            margin-#{$right}: auto;
+        }
+    }
+
+
+
+
+    $_distance_horizontal: 8px;
+    $_distance_vertical: 8px;
+    .snax-demo-format-images {
+        .snax-demo-format-content {
+            display: table;
+            padding-bottom: 2*$_distance_vertical;
+            padding-#{$right}: 2*$_distance_horizontal;
+            margin-#{$left}: auto;
+            margin-#{$right}: auto;
+
+            position: relative;
+
+            span {
+                position: relative;
+                z-index: 3;
+            }
+
+            span:nth-child(2) {
+                position: absolute;
+                z-index: 2;
+                #{$left}: auto;
+                #{$right}: $_distance_horizontal;
+                top: $_distance_vertical;
+                bottom: auto;
+
+                > img {
+                    opacity: 0.666;
+                }
+            }
+
+            span:nth-child(3) {
+                position: absolute;
+                z-index: 1;
+                #{$left}: auto;
+                #{$right}: 0;
+                top: 2*$_distance_vertical;
+                bottom: auto;
+
+                > img {
+                    opacity: 0.333;
+                }
+            }
+        }
+    }
+
+    .snax-demo-button {
+        &:after {
+            // &rsaquo; or &lsaquo;
+            content: if-ltr( " \203A", "\2039 " );
+        }
+    }
+}
+
+
+
+
+
+
+

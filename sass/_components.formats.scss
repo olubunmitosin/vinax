@@ -1,0 +1,123 @@
+.snax {
+    .snax-formats {
+        margin: 0 -5px 1.5rem -5px;
+        padding: 0;
+        list-style: none;
+
+        letter-spacing: -0.31em; /* collapse white-space between units */
+
+
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+
+        -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+
+        > li {
+            display: inline-block;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+
+            width: 100%;
+
+            list-style: none; // Just in case.
+
+            @include box-sizing( border-box );
+            padding: 0 5px 10px;
+
+            letter-spacing: normal;
+            vertical-align: top;
+        }
+
+
+        .snax-format {
+            @include snax_remove_link_underline;
+
+            display: block;
+
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+
+            border: 1px solid #e6e6e6;
+            padding: 25px 15px 15px;
+
+            text-align: center;
+
+            @include transition(
+                border-color 0.3s ease-in-out,
+                background-color 0.3s ease-in-out
+            );
+
+            &:hover {
+                border-color: #f2f2f2;
+                background-color: #f2f2f2;
+            }
+        }
+    }
+
+
+    @media only screen and ( min-width: 769px ) {
+        .snax-formats > li { width: percentage(1/2); }
+        .snax-formats-1 > li { width: percentage(1/1); }
+    }
+
+    @media only screen and ( min-width: 1025px ) {
+        .snax-formats {
+            > li {
+                > a {
+                    padding: 30px;
+                }
+            }
+        }
+    }
+
+    $_icon_size: 68px;
+    .snax-format-icon {
+        display: block;
+        width: $_icon_size;
+        height: $_icon_size;
+        margin: 0 auto 0.5em;
+
+        &:before {
+            font: #{$_icon_size}/1 "snaxicon";
+        }
+
+    }
+
+    .snax-format-image              .snax-format-icon:before { content: "\e000"; }
+    .snax-format-gallery            .snax-format-icon:before { content: "\e001"; }
+    .snax-format-embed              .snax-format-icon:before { content: "\e002"; }
+    .snax-format-list               .snax-format-icon:before { content: "\e018"; }
+    .snax-format-classic_list       .snax-format-icon:before { content: "\e016"; }
+    .snax-format-ranked_list        .snax-format-icon:before { content: "\e019"; }
+    .snax-format-text               .snax-format-icon:before { content: "\e013"; }
+    .snax-format-meme               .snax-format-icon:before { content: "\e015"; }
+    .snax-format-trivia_quiz        .snax-format-icon:before { content: "\e01a"; }
+    .snax-format-personality_quiz   .snax-format-icon:before { content: "\e003"; }
+    .snax-format-audio              .snax-format-icon:before { content: "\e026"; }
+    .snax-format-video              .snax-format-icon:before { content: "\e027"; }
+    .snax-format-classic_poll       .snax-format-icon:before { content: "\e01b"; }
+    .snax-format-versus_poll        .snax-format-icon:before { content: "\e034"; }
+    .snax-format-binary_poll        .snax-format-icon:before { content: "\e033"; }
+    .snax-format-link               .snax-format-icon:before { content: "\e01c"; }
+
+    .snax-format-label {
+        margin: 0.5em 0;
+    }
+
+    .snax-format-desc {
+        opacity: 0.666;
+    }
+
+    .snax-meme-template:hover {
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,19 @@
+.snax {
+    .snax-list-overview {
+        &:after {
+            display: table;
+            clear: both;
+            content: "";
+        }
+
+        .snax-list-overview-submissions {
+            width: 50%;
+            float: $left;
+        }
+
+        .snax-list-overview-voting {
+            width: 50%;
+            float: $left;
+        }
+    }
+}

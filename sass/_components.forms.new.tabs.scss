@@ -1,0 +1,163 @@
+.snax {
+    .snax-tab-content {
+        display: none;
+    }
+
+    .snax-tab-content-current {
+        display: block;
+    }
+
+    .snax-tab-content-hidden {
+        display: none;
+    }
+
+    .snax-tabs-nav-hidden {
+        display: none;
+    }
+
+    .snax-tabs-nav {
+        margin: 0 0 10px;
+        text-align: center;
+
+        &:after {
+            display: table;
+            clear: both;
+            content: "";
+        }
+
+        .snax-tabs-nav-item {
+            @include snax_remove_link_underline;
+            color: inherit;
+            opacity:0.5;
+            display: inline-block;
+
+            padding: 0.25em 0.5em;
+
+            line-height: 1.25;
+            text-align: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-#{$right}: 15px;
+            font-size: 11px;
+
+            &:before {
+                display: block;
+                font-size: 24px;
+                font-family: "snaxicon";
+                vertical-align: middle;
+                margin-bottom:5px;
+            }
+        }
+
+        .snax-tabs-nav-item-current {
+            position: relative;
+            z-index: 2;
+            margin-bottom: -1px;
+            opacity:1;
+            &:first-child {
+                margin-#{$left}: 0;
+            }
+        }
+
+
+
+
+        .snax-tabs-nav-item-image:before { content: "\e000"; }
+        .snax-tabs-nav-item-embed:before { content: "\e002"; }
+        .snax-tabs-nav-item-video:before { content: "\e027"; }
+        .snax-tabs-nav-item-audio:before { content: "\e026"; }
+        .snax-tabs-nav-item-text:before  { content: "\e013"; }
+        
+        .snax-tabs-nav-meme-templates:before { content: "\e015"; }
+        .snax-tabs-nav-meme-image:before { content: "\e000"; }
+    }
+
+    .nav-tab-wrapper {
+        margin: 0 0 10px;
+
+        &:after {
+            display: table;
+            clear: both;
+            content: "";
+        }
+
+        .nav-tab {
+            @include snax_remove_link_underline;
+
+            display: block;
+            @include box-sizing( border-box );
+
+            width: 100%;
+            padding: 0.25em 0.5em;
+            border-width: 1px;
+
+            line-height: 1.25;
+            text-align: center;
+            border-style: solid;
+            cursor: pointer;
+
+            &:first-child {
+                @include border-radius( 4px 4px 0 0 );
+            }
+
+            &:last-child {
+                @include border-radius( 0 0 4px 4px );
+            }
+        }
+
+        .nav-tab-active {
+            position: relative;
+            z-index: 2;
+            margin-bottom: -1px;
+
+            &:first-child {
+                margin-#{$left}: 0;
+                margin-#{$right}: -1px;
+            }
+        }
+
+        .nav-tab:not(.nav-tab-active) {
+            color: inherit;
+        }
+    }
+
+
+    @media only screen and ( min-width: 601px ) {
+        .snax-tabs-nav {
+            .snax-tabs-nav-item {
+
+            }
+
+            .snax-tabs-nav-item-current {
+                margin-bottom: 0;
+                margin-#{$left}: -1px;
+            }
+        }
+
+        .nav-tab-wrapper {
+            .nav-tab {
+                float: #{$left};
+                width: 50%;
+
+                &:first-child {
+                    @include border-radius( 4px 0 0 4px );
+                }
+
+                &:last-child {
+                    @include border-radius( 0 4px 4px 0 );
+                }
+            }
+
+            .nav-tab-active {
+                margin-bottom: 0;
+                margin-#{$left}: -1px;
+            }
+        }
+    }
+}
+
+
+
+
+
+

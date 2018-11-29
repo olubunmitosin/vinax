@@ -1,0 +1,144 @@
+.snax {
+    .snax-voting {
+        display: inline-block;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+
+        vertical-align: middle;
+        text-align: center;
+
+        // Clearfix
+        &:after {
+            display: table;
+            clear: both;
+            content: "";
+        }
+
+        .snax-voting-upvote {
+            @include snax_remove_link_underline;
+
+            display: inline-block;
+            -ms-flex-order: 2;
+            order: 2;
+
+            margin-#{$right}: 5px;
+
+            font-size: 0;
+            line-height: 1;
+
+            vertical-align: middle;
+
+            @include transition(
+                border-color 0.375s ease-in-out,
+                background-color 0.375s ease-in-out,
+                color 0.375s ease-in-out,
+                opacity 0.375s ease-in-out
+            );
+
+            &:before {
+                display: block;
+                font: 32px/1 "snaxicon";
+                content: "\e006";
+            }
+        }
+
+
+        .snax-voting-downvote {
+            @include snax_remove_link_underline;
+
+            display: inline-block;
+            -ms-flex-order: 4;
+            order: 4;
+
+            margin-#{$left}: 5px;
+
+            font-size: 0;
+            line-height: 1;
+
+            vertical-align: middle;
+
+            @include transition(
+                border-color 0.375s ease-in-out,
+                background-color 0.375s ease-in-out,
+                color 0.375s ease-in-out,
+                opacity 0.375s ease-in-out
+            );
+
+            &:before {
+                display: block;
+                font: 32px/1 "snaxicon";
+                content: "\e007"
+            }
+        }
+
+        .snax-voting-upvote:not(:hover):not(.snax-user-voted),
+        .snax-voting-downvote:not(:hover):not(.snax-user-voted) {
+            color: inherit;
+            opacity: 0.333;
+        }
+
+        .snax-voting-score {
+            display: inline-block;
+            -ms-flex-order: 6;
+            order: 6;
+
+            margin: 0 10px;
+
+            vertical-align: middle;
+
+            line-height: 1.125;
+
+            strong {
+                display: inline-block;
+
+                font-size: 20px;
+
+                vertical-align: middle;
+            }
+        }
+
+
+    }
+
+
+    .snax-voting-large {
+        display: block;
+        display: -ms-flexbox;
+        display: flex;
+
+        -ms-flex-pack: center;
+        justify-content: center;
+
+        border-width: 1px;
+
+        border-style: solid;
+
+        border-color: #e6e6e6;
+
+        .snax-voting-upvote,
+        .snax-voting-downvote {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+
+            &:before {
+                font-size: 17px*3;
+            }
+        }
+
+        .snax-voting-score {
+            -ms-flex-order: 3;
+            order: 3;
+        }
+    }
+
+
+    .snax-voting-container {
+        margin-top: 4.5rem;
+        margin-bottom: 4.5rem;
+        text-align: center;
+    }
+}

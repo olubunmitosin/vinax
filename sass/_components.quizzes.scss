@@ -1,0 +1,115 @@
+
+
+@import "components.quizzes.progress";
+
+
+@import "components.quizzes.questions";
+@import "components.quizzes.answers";
+@import "components.quizzes.results";
+
+
+
+.snax-quiz-check-answers-hidden { display: none; }
+
+
+.snax-quiz-actions {
+    text-align: center;
+}
+
+.snax-quiz-actions-hidden {
+    display: none;
+}
+
+.snax-quiz-button-start-quiz,
+.snax-quiz-button-restart-quiz {
+    width: 100%;
+}
+
+
+
+
+
+
+
+.quizzard-share {
+    display: block;
+    box-sizing: border-box ;
+    border-width: 2px;
+    margin: 0 auto;
+
+    text-align: center;
+
+    border-style: solid;
+
+    color: #fff;
+
+    &:before {
+        display: inline-block;
+        margin-#{$right}: 8px;
+
+        vertical-align: middle;
+
+        color: inherit; /* Just in case (Avada styles pseudo elements) */
+        font: 18px/1 "snaxicon";
+    }
+}
+
+.quizzard-share-facebook {
+    border-color: #2d5f9a;
+    background-color: #2d5f9a;
+
+    &:before {
+        content: "\e00a"
+    }
+}
+
+.quizzard-share-twitter {
+    border-color: #00c3f3;
+    background-color: #00c3f3;
+
+    &:before {
+        content: "\e00b"
+    }
+}
+
+.quizzard-share-pinterest {
+    border-color: #bd081c;
+    background-color: #bd081c;
+
+    &:before {
+        content: "\e00c"
+    }
+}
+
+
+
+
+.snax-quiz-intro-wrapper {
+    .snax-quiz-actions {
+        display: none;
+    }
+}
+
+
+
+.snax-quiz-with-start-trigger {
+    .snax-quiz-intro-wrapper {
+        .snax-quiz-actions {
+            display: block;
+        }
+    }
+
+    .snax-quiz-questions-wrapper,
+    .snax-quiz-results,
+    .snax-quiz-pagination {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+@import "components.forms.new.quiz";

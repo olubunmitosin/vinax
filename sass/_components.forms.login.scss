@@ -1,0 +1,214 @@
+.snax {
+     .snax-divider-or {
+         overflow: hidden;
+         position: relative;
+
+         text-align: center;
+
+         > span {
+             display: inline-block;
+             position: relative;
+
+             &:before {
+                 display: block;
+                 width: 999px;
+                 height: 0;
+                 border-width: 1px 0 0;
+                 margin-#{$right}: 20px;
+
+                 position: absolute;
+                 z-index: 1;
+                 #{$right}: 100%;
+                 #{$left}: auto;
+                 top: 50%;
+
+                 border-style: solid;
+
+                 content: "";
+
+                 opacity: 0.1667;
+             }
+
+             &:after {
+                 display: block;
+                 width: 999px;
+                 height: 0;
+                 border-width: 1px 0 0;
+                 margin-#{$left}: 20px;
+
+                 position: absolute;
+                 z-index: 1;
+                 #{$left}: 100%;
+                 #{$right}: auto;
+                 top: 50%;
+
+                 border-style: solid;
+
+                 content: "";
+
+                 opacity: 0.1667;
+             }
+         }
+     }
+ }
+
+
+
+/* @todo */
+.white-popup {
+    @include box-sizing( border-box );
+    position: relative;
+    background: #fff;
+    padding: 30px 20px 15px 20px;
+    width: auto;
+    max-width: 540px;
+    margin: 20px auto;
+    text-align: center;
+
+    input{
+        text-align:center;
+     }
+
+     .snax-wpsl-gdpr-consent{
+         display:none;
+     }
+     .snax-login-with-social-network{
+         margin-bottom:15px;
+     }
+
+    .wp-social-login-connect-with,
+    .snax-form-legend-sign-in {
+        overflow: hidden;
+        width: 1px;
+        height: 1px;
+        position: absolute;
+        clip: rect( 1px, 1px, 1px, 1px );
+    }
+
+    .wp-social-login-provider-list a{
+        opacity:1;
+        pointer-events: all;
+    }
+
+    #loginform-in-popup{
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .login-username {
+        margin-bottom:10px;
+        label {
+            display: block;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            clip: rect( 1px, 1px, 1px, 1px );
+        }
+
+        input[type=text] {
+            width: 100%;
+        }
+    }
+
+    .login-password {
+        margin-bottom:15px;
+        label {
+            display: block;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            clip: rect( 1px, 1px, 1px, 1px );
+        }
+
+        .snax-link-forgot-pass {
+            display: table;
+            margin-#{$left}: auto;
+            margin-#{$right}: 0;
+            font-size: 0.83em;
+        }
+
+        input[type=password] {
+            clear: both;
+            width: 100%;
+        }
+    }
+
+    .login-submit {
+        input[type=submit] {
+            width: 100%;
+        }
+    }
+
+    .snax-form-tip-register {
+        margin-top: -0.75em;
+        text-align: center;
+    }
+
+    .forgot-submit input[type=submit] {
+        width: 100%;
+    }
+
+    .forgot-username {
+        label {
+            display: block;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            clip: rect(1px, 1px, 1px, 1px);
+        }
+
+        input[type=text] {
+            width: 100%;
+        }
+    }
+
+   .reset-password-submit input[type=submit] {
+        width: 100%; 
+    }
+
+    .reset-pass {
+        label {
+            display: block;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            clip: rect(1px, 1px, 1px, 1px); 
+        }
+
+        input[type=password] {
+            width: 100%; 
+        }
+    }
+
+    // Magnific Popup close button.
+    .mfp-close {
+        width: 30px;
+
+        position: absolute;
+        #{$right}: 0;
+        #{$left}: auto;
+        top: 0;
+
+        text-align: center;
+    }
+}
+
+
+#snax-register-recaptcha,
+#snax-login-recaptcha{
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 304px;
+}
+
+
+@media only screen and ( min-width: 481px ) {
+    .white-popup {
+        padding: 45px 60px 15px 60px;
+    }
+}
+

@@ -1,0 +1,198 @@
+/**
+ * WordPress Social Login integration
+ */
+.snax {
+    .snax-wpsl {
+        .wp-social-login-provider-list {
+            margin: 0 0 1.5rem;
+            padding: 0;
+        }
+
+        .wp-social-login-provider {
+            display: inline-block;
+            @include box-sizing( border-box );
+            max-width: 100%;
+            width: 100%;
+            border-width: 2px;
+            padding: 10px 15px;
+            margin: 0 0 5px;
+
+            border-style: solid;
+
+            @include transition(
+                border-color 0.375s ease-in-out,
+                background-color 0.375s ease-in-out,
+                color 0.375s ease-in-out,
+                opacity 0.375s ease-in-out
+            );
+
+            color: #fff;
+
+            @media only screen and ( min-width: 769px ) {
+                & {
+                    padding-#{$left}: 15px;
+                    padding-#{$right}: 15px;
+                }
+            }
+
+            &:before {
+                display: inline-block;
+                width: 1em;
+                margin-#{$right}: 10px;
+
+                font-size: 24px;
+                line-height: 1;
+                font-family: "FontAwesome";
+                font-weight: normal;
+
+                text-align: center;
+                vertical-align: middle;
+            }
+        }
+
+        .wp-social-login-provider-facebook {
+            border-color: #2d5f9a;
+            background-color: #2d5f9a;
+
+            &:before {
+                content: "\f09a"
+            }
+        }
+
+        .wp-social-login-provider-twitter {
+            border-color: #00c3f3;
+            background-color: #00c3f3;
+
+            &:before {
+                content: "\f099"
+            }
+        }
+
+        .wp-social-login-provider-google {
+            border-color: #dc4e41;
+            background-color: #dc4e41;
+
+            &:before {
+                content: "\f1a0"
+            }
+        }
+
+        .wp-social-login-provider-tumblr {
+            border-color: #36465d;
+            background-color: #36465d;
+
+            &:before {
+                content: "\f173"
+            }
+        }
+
+        .wp-social-login-provider-linkedin {
+            border-color: #0077b5;
+            background-color: #0077b5;
+
+            &:before {
+                content: "\f0e1"
+            }
+        }
+
+        .wp-social-login-provider-instagram {
+            border-color: #125688;
+            background-color: #125688;
+
+            &:before {
+                content: "\f16d"
+            }
+        }
+
+        .wp-social-login-provider-vkontakte {
+            border-color: #6383a8;
+            background-color: #6383a8;
+
+            &:before {
+                content: "\f189"
+            }
+        }
+
+        .wp-social-login-provider-yahoo {
+            border-color: #440099;
+            background-color: #440099;
+
+            &:before {
+                content: "\f19e"
+            }
+        }
+
+        .wp-social-login-provider-wordpress {
+            border-color: #21759b;
+            background-color: #21759b;
+
+            &:before {
+                content: "\f19a"
+            }
+        }
+
+        .wp-social-login-provider-odnoklassniki {
+            border-color: #f4731c;
+            background-color: #f4731c;
+
+            &:before {
+                content: "\f263"
+            }
+        }
+
+        .wp-social-login-provider-steam {
+            border-color: #000;
+            background-color: #000;
+
+            &:before {
+                content: "\f1b6"
+            }
+        }
+
+        .wp-social-login-provider-twitchtv {
+            border-color: #6441a5;
+            background-color: #6441a5;
+
+            &:before {
+                content: "\f1e8"
+            }
+        }
+
+        /* Windows Live */
+        .wp-social-login-provider-live {
+            border-color: #0072c6;
+            background-color: #0072c6;
+
+            &:before {
+                content: "\f17a"
+            }
+        }
+
+        .wp-social-login-provider-reddit {
+            border-color: #ff4500;
+            background-color: #ff4500;
+
+            &:before {
+                content: "\f281"
+            }
+        }
+
+        .wp-social-login-provider-lastfm {
+            border-color: #d51007;
+            background-color: #d51007;
+
+            &:before {
+                content: "\f202"
+            }
+        }
+
+        .wp-social-login-provider-dribbble {
+            border-color: #ea4c89;
+            background-color: #ea4c89;
+
+            &:before {
+                content: "\f17d"
+            }
+        }
+    }
+}

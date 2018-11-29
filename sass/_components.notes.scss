@@ -1,0 +1,56 @@
+.snax {
+    .snax-note {
+        margin-top: 3em;
+        margin-bottom: 3em;
+
+        text-align: center;
+
+        .snax-note-title {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            font-size: 1.17em;
+        }
+    }
+
+    .snax-note-off {
+        display: none;
+    }
+
+
+    .snax-note-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto;
+
+        @include border-radius( 50% );
+
+        &:before {
+            font: 34px/64px "snaxicon";
+            content: "\e008";
+        }
+    }
+
+
+    .snax-note-success {
+        .snax-note-icon {
+            border-color: #6f9a37;
+            background-color: #6f9a37;
+            color: #fff;
+        }
+    }
+
+    .snax-note-warning {
+        .snax-note-icon {
+            border-color: #fdc153;
+            background-color: #fdc153;
+            color: #fff;
+
+            &:before {
+                content: "\e00f";
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+$_share_width: 48px;
+$_share_height: 48px;
+.snax {
+    .snax-item-share-content {
+        width: $_share_width;
+        margin-#{$left}: auto;
+        margin-#{$right}: auto;
+
+        background-color: #fff;
+
+        .snax-share {
+            display: block;
+            @include box-sizing( border-box );
+            width: $_share_width;
+            border-width: 2px;
+            margin: 0 auto;
+
+            font-size: 0;
+            line-height: 0;
+
+            text-align: center;
+
+            border-style: solid;
+
+            @include transition(
+                border-color 0.375s ease-in-out,
+                background-color 0.375s ease-in-out,
+                color 0.375s ease-in-out,
+                opacity 0.375s ease-in-out
+            );
+
+            color: #fff;
+
+            &:before {
+                color: inherit; // Just in case (Avada styles pseudo elements)
+                font: 18px/#{$_share_height - 4px} "snaxicon";
+            }
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .snax-share-facebook {
+            border-color: #2d5f9a;
+            background-color: #2d5f9a;
+
+            &:before {
+                content: "\e00a"
+            }
+        }
+
+        .snax-share-twitter {
+            border-color: #00c3f3;
+            background-color: #00c3f3;
+
+            &:before {
+                content: "\e00b"
+            }
+        }
+
+        .snax-share-pinterest {
+            border-color: #bd081c;
+            background-color: #bd081c;
+
+            &:before {
+                content: "\e00c"
+            }
+        }
+    }
+}
