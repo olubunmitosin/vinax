@@ -146,6 +146,12 @@ function snax_admin_settings_fields_general( $fields ) {
 			'sanitize_callback' => 'intval',
 			'args'              => array(),
 		),
+		'snax_post_description_word_limit' => array(
+			'title'             => __( 'Description word limit', 'snax' ),
+			'callback'          => 'snax_admin_setting_callback_post_description_word_limit',
+			'sanitize_callback' => 'intval',
+			'args'              => array(),
+		),
 	);
 
 	return $fields;
