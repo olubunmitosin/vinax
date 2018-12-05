@@ -10,8 +10,6 @@
 #### Goto 'Add new Plugin', upload the this version of snax if you've downloaded it already
 #### if not, download it first by clicking on the 'clone or download button' above
 
-* - search and replace 'snax to vinax'
-
 > click activate plugin, and
 > That's all.
 
