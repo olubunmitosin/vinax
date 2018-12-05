@@ -13,5 +13,6 @@
 		          rows="3"
 		          cols="40"
 		          maxlength="<?php echo esc_attr( snax_get_item_content_max_length() ); ?>"
+                  data-wordlimit="<?php echo esc_attr( snax_get_post_description_word_limit() ); ?>"
 		          placeholder="<?php esc_attr_e( 'Enter some description&hellip;', 'snax' ); ?>"></textarea>
 </p>

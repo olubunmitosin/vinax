@@ -829,6 +829,17 @@ function snax_get_post_description_max_length() {
 	return (int) apply_filters( 'snax_post_description_max_length', get_option( 'snax_post_description_max_length', 3600 ) );
 }
 
+
+/**
+ * Return maximum number of characters allowed in a post description (short content)
+ *
+ * @return int
+ */
+function snax_get_post_description_word_limit() {
+    return (int) apply_filters( 'snax_post_description_word_limit', get_option( 'snax_post_description_word_limit', 100 ) );
+}
+
+
 /**
  * Return maximum number of characters allowed in a post content
  *

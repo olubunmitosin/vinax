@@ -22,6 +22,25 @@ snax.frontendSubmission = {};
 
     // Init components.
     $(document).ready(function() {
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+
         ctx.form.init();
         ctx.tabs.init();
         ctx.uploadMedia.init();
@@ -72,6 +91,7 @@ snax.frontendSubmission = {};
         'postRefLink':      'input#snax-post-ref-link',
         'postLegal':        'input#snax-post-legal',
         'postContentTitle': '#snax-post-title-editable',
+        'postNoticeBox': '#snax-notification-box',
         'postContentEditor':'textarea.snax-content-editor',
         'insertButton':     '.snax-form-frontend .snax-insert-button',
         'mediaForm':        '.snax-edit-post-row-media',
@@ -101,6 +121,25 @@ snax.frontendSubmission = {};
     c.selectors = selectors;
     c.classes   = classes;
     c.i18n      = i18n;
+
+
+
+
+    var $postDescriptionWordLimit = $(selectors.postDescription).data('wordlimit');
+    var $postDescriptionMaxLength = $(selectors.postDescription).attr('maxLength');
+    var $postContentEditorValue = $(selectors.postContentEditor);
+    var $postContentNoticeBox = $(selectors.postNoticeBox);
+
+
+
+    $(document).ready(function () {
+
+        //we set it as a variable so we can clear it anytime
+        //if need arise to do so.
+        var showNotice = setInterval(function () {
+            showWordsCountNotice($postContentEditorValue.val(),$postDescriptionWordLimit)
+        }, 500);
+    });
 
     /** INIT *******************************************/
 
@@ -184,11 +223,113 @@ snax.frontendSubmission = {};
         });
     };
 
+
+    /**
+     * Filter post contents so we can make use of
+     * the string in other areas such as words validation
+     * @param string
+     * @returns {*}
+     */
+    function filterString(string) {
+        //strip off all html tags
+        string = string.replace(/(<([^>]+)>)/ig, "");
+
+        //strip off $nbps; from string
+        string = string.replace(/[$]nbsp[;]/ig, " ");
+
+        //exclude  start and end white-space
+        string = string.replace(/(^\s*)|(\s*$)/gi,"");
+
+        //convert 2 or more spaces to 1
+        string = string.replace(/[ ]{2,}/gi," ");
+
+        // exclude newline with a start spacing
+        string = string.replace(/\n /,"\n");
+
+        return string;
+    }
+
+
+    /**
+     * Validate user post content input which has been filtered
+     * by out filterString function to contain only words.
+     * @param string
+     * @param wordLimit
+     * @returns {boolean}
+     */
+    function validateWordCount(string, wordLimit) {
+
+        var is_error = false;
+
+        string = filterString(string);
+
+        var wordsCount = string.split(" ").length,
+            //below is the current input character length. we can use it later
+            charCount = string.length;
+
+        if (wordsCount > wordLimit){
+            //we fire error notice and halt all processes
+            is_error = true;
+            toastr.error('Sorry! you entered '+ wordsCount +' words. Must be exactly '+ wordLimit +' words','Words Limit Exceeded!');
+        }else if (wordsCount < wordLimit){
+            //we fire error notice and halt all processes
+            is_error = true;
+            toastr.error('Number of words entered is ' + wordsCount + ' which is less than '+ wordLimit + ' words. Please enter exactly '+ wordLimit + ' words','Words Limit Not Reached');
+        }else{
+            is_error = false;
+            toastr.success('Hurray! You can now submit your post.','Words Limit Rule Obeyed');
+
+        }
+        //'Editor contains '+ wordsCount + ' words and '+ charCount + ' characters. But max word is '+wordLimit
+        return is_error;
+    }
+
+
+
+    /**
+     * Show words count notice to users so user knows
+     * number of inputs entered so far.
+     * @param string
+     * @param wordLimit
+     */
+    function showWordsCountNotice (string, wordLimit) {
+
+        //filter the post contents to remove unwanted tags
+        string = filterString(string);
+
+        var wordsCount = string.split(" ").length,
+            //below is the current input character length. we can use it later
+            charCount = string.length;
+
+        //first we need to clear our notification boc container
+        $postContentNoticeBox.html('');
+
+        if ( wordsCount < wordLimit || wordsCount > wordLimit ){
+            //Then set notification message
+            $postContentNoticeBox.html(
+                'You have entered <span>'+ wordsCount +'</span> number of words. You must enter exactly <span>'+ wordLimit +'</span> words'
+            );
+        } else {
+            //User obeyed the rule. Set message
+            $postContentNoticeBox.html(
+                'You have entered <span>'+ wordsCount +'</span> number of words. Thanks for your obedience'
+            );
+        }
+    }
+
     c.validateForm = function() {
         var $form = $(selectors.post);
 
         // Save as Draft.
         $form.find('input[name=snax-save-draft]').on('click', function() {
+
+            /////////////////////////////////////////////////////////////
+            //Perform word limit validation here
+            // $postDescriptionMaxLength
+            if (validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit) === true ){
+                return false;
+            }
+
             // When we stop default form processing, eg. to save cards via ajax, we need to resubmit it again afterwards.
             // We do this programmatically so the "Save Draft" submit input WILL NOT be attached to the request (only clicked submits, during normal flow, are sent).
             // We need to send information about type of request (save as draft in this case) using hidden input.
@@ -221,6 +362,17 @@ snax.frontendSubmission = {};
                 } else {
                     $postTitle.val($postContentTitle.text());
                 }
+            }
+
+            /////////////////////////////////////////////////////////////
+            //Perform word limit validation here
+            // $postDescriptionMaxLength //we might use it later
+            if (validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit) === true ){
+                //this means is_error flag is set to true. So we prevent further submission actions.
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
             }
 
             var $featuredImageContainer = $(selectors.featuredImage);

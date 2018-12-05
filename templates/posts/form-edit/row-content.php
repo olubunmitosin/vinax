@@ -7,12 +7,14 @@
  */
 ?>
 <div class="snax-edit-post-row-content">
-	<textarea id="snax-post-description"
+    <div id="snax-notification-box"></div>
+    <textarea id="snax-post-description"
 			  class="snax-content-editor"
 			  name="snax-post-description"
 			  rows="3"
 			  cols="40"
 			  maxlength="<?php echo esc_attr( snax_get_post_content_max_length() ); ?>"
+              data-wordlimit="<?php echo esc_attr( snax_get_post_description_word_limit() ); ?>"
 			  placeholder="<?php esc_attr_e( 'Enter some text&hellip;', 'snax' ); ?>"><?php echo esc_textarea( snax_get_field_values( 'description' ) ); ?></textarea>
 
 	<input type="hidden" id="snax-media-form-nonce" value="<?php echo esc_attr( wp_create_nonce( 'media-form' ) ); ?>"/>

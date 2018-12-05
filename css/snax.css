@@ -9,6 +9,23 @@
   font-weight: normal;
   font-style: normal; }
 
+
+#snax-notification-box {
+  height: 1em;
+  display: block;
+  padding: 10px;
+  border-left: 4px solid #e6e6e6;
+  background: #F5F5F5;
+}
+
+#snax-notification-box span {
+  color: #ff8300;
+  font-style: normal;
+  font-weight: bold;
+}
+
+
+
 /**
  * Actions.
  *
