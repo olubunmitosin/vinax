@@ -498,6 +498,9 @@ if ( ! class_exists( 'Snax' ) ) :
 			// Popup.
 			wp_enqueue_style( 'jquery-magnific-popup', $this->assets_url . 'js/jquery.magnific-popup/magnific-popup.css' );
 
+            //Toastr.
+            wp_enqueue_style( 'snax-toastr', $this->css_url . 'toastr/toastr.css' );
+
 			// Front.
 			wp_enqueue_style( 'snax', $this->css_url . 'snax.css', array(), $this->version );
 			wp_style_add_data( 'snax', 'rtl', 'replace' );
@@ -548,7 +551,10 @@ if ( ! class_exists( 'Snax' ) ) :
 			// Popup.
 			wp_enqueue_script( 'jquery-magnific-popup', $this->assets_url . 'js/jquery.magnific-popup/jquery.magnific-popup.min.js', array( 'jquery' ), '1.1.0', true );
 
-			// Convert dates into timestamps.
+            //Toastr Notification Plugin
+            wp_enqueue_script( 'snax-toastr-js', $this->assets_url . 'js/toastr/toastr.min.js', array( 'jquery' ), '1.1.0', true );
+
+            // Convert dates into timestamps.
 			wp_enqueue_script( 'jquery-timeago', $this->assets_url . 'js/jquery.timeago/jquery.timeago.js', array( 'jquery' ), '1.5.2', true );
 			$this->localize_timeago_script();
 
