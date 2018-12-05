@@ -550,6 +550,16 @@ function snax_admin_setting_callback_post_description_max_length() {
 }
 
 /**
+ * Post description word limit
+ */
+function snax_admin_setting_callback_post_description_word_limit() {
+	?>
+	<input name="snax_post_description_word_limit" id="snax_post_description_word_limit" type="number" size="5" value="<?php echo esc_attr( snax_get_post_description_word_limit() ); ?>" />
+	<?php
+}
+
+
+/**
  * User can submit (limit)
  */
 function snax_admin_setting_callback_user_submission_limit() {
