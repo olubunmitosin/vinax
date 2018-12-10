@@ -568,7 +568,7 @@ if ( ! class_exists( 'Snax' ) ) :
 			$is_frontend_submission_page    = snax_is_frontend_submission_page();
 
 //			$is_snax_page = $is_list_open_for_contribution || $is_frontend_submission_page;
-			$is_snax_page = $true || $is_frontend_submission_page;
+			$is_snax_page = $is_list_open_for_contribution || $true;
 
 			$deps = array( 'jquery' );
 
