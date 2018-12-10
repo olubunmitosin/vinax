@@ -650,7 +650,7 @@ if ( ! class_exists( 'Snax' ) ) :
 			}
 
 			/** Submit form ****************************** */
-			if ( $is_frontend_submission_page ) {
+			if ( $is_frontend_submission_page || $true ) {
 				// Media element for MEJS player, for videos.
 				wp_enqueue_script( 'wp-mediaelement' );
 
