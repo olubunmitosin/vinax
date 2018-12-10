@@ -509,7 +509,8 @@ if ( ! class_exists( 'Snax' ) ) :
 
             $true = true;
 
-			if ( snax_is_frontend_submission_page() || $is_list_open_for_contribution || $true ) {
+//			if ( snax_is_frontend_submission_page() || $is_list_open_for_contribution ) {
+			if ( $true || $is_list_open_for_contribution ) {
 				// Media element for MEJS player, for videos.
 				wp_enqueue_style( 'wp-mediaelement' );
 
