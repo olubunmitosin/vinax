@@ -234,7 +234,7 @@ snax.frontendSubmission = {};
         //strip off all html tags
         string = string.replace(/(<([^>]+)>)/ig, "");
 
-        //strip off $nbps; from string
+        //strip off $nbsp; from string
         string = string.replace(/[$]nbsp[;]/ig, " ");
 
         //exclude  start and end white-space
@@ -309,11 +309,14 @@ snax.frontendSubmission = {};
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. You must enter exactly <span>'+ wordLimit +'</span> words'
             );
+            return false;
         } else {
             //User obeyed the rule. Set message
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. Thanks for your obedience'
             );
+
+            return false;
         }
     }
 
@@ -321,12 +324,15 @@ snax.frontendSubmission = {};
         var $form = $(selectors.post);
 
         // Save as Draft.
-        $form.find('input[name=snax-save-draft]').on('click', function() {
+        $form.find('input[name=snax-save-draft]').on('click', function(e) {
 
             /////////////////////////////////////////////////////////////
             //Perform word limit validation here
             // $postDescriptionMaxLength
             if (validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit) === true ){
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
                 return false;
             }
 
