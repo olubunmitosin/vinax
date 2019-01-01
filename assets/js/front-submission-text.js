@@ -12,7 +12,6 @@
 
     // Component namespace shortcut
     var c = ctx.textFormat;
-
     /** CONFIG *******************************************/
 
     // CSS selectors
@@ -43,9 +42,11 @@
     };
 
     c.initEditor = function() {
+
         $editor = $(selectors.editor);
 
         var config = {
+            'init' : true,
             'key':          'CMFIZJNKLDXIREJI==',
             'language':     c.getEditorConfig('language'),
             'heightMin':    360,
@@ -132,6 +133,8 @@
             'videoEditButtons':     ['videoRemove'],
             'videoResize':          false
         };
+
+        window.snax.froalaConfig = config;
 
         // Override Froala's config using this filter function.
         if (typeof ctx.froalaEditorConfig === 'function') {

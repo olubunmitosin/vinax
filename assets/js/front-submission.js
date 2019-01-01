@@ -136,9 +136,15 @@ snax.frontendSubmission = {};
 
         //we set it as a variable so we can clear it anytime
         //if need arise to do so.
-        var showNotice = setInterval(function () {
-            showWordsCountNotice($postContentEditorValue.val(),$postDescriptionWordLimit)
-        }, 500);
+
+
+           var showNotice = setInterval(function () {
+               if (typeof window.snax.froalaConfig !== "undefined") {
+                   console.log(window.snax.froalaConfig);
+                   showWordsCountNotice($postContentEditorValue.val(), $postDescriptionWordLimit)
+               }
+           }, 500);
+
     });
 
     /** INIT *******************************************/
