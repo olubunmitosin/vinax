@@ -139,6 +139,9 @@ snax.frontendSubmission = {};
 
 
            var showNotice = setInterval(function () {
+            
+                console.log(window.snax.froalaConfig);
+
                if (typeof window.snax.froalaConfig !== "undefined") {
                    console.log(window.snax.froalaConfig);
                    showWordsCountNotice($postContentEditorValue.val(), $postDescriptionWordLimit)
