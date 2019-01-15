@@ -64,7 +64,7 @@ snax.frontendSubmission = {};
  *
  ******************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
@@ -138,15 +138,13 @@ snax.frontendSubmission = {};
         //if need arise to do so.
 
 
-           var showNotice = setInterval(function () {
-            
-                console.log(window.snax.froalaConfig);
+        var showNotice = setInterval(function () {
 
-               if (typeof window.snax.froalaConfig !== "undefined") {
-                   console.log(window.snax.froalaConfig);
-                   showWordsCountNotice($postContentEditorValue.val(), $postDescriptionWordLimit)
-               }
-           }, 500);
+         if (document.getElementById(selectors.postNoticeBox)) {
+                //it's the editor page so show notice
+                showWordsCountNotice($postContentEditorValue.val(), $postDescriptionWordLimit)
+            }
+        }, 500);
 
     });
 
@@ -248,7 +246,7 @@ snax.frontendSubmission = {};
      * @param string
      * @returns {*}
      */
-    function filterString(string) {
+     function filterString(string) {
         //strip off all html tags
         string = string.replace(/(<([^>]+)>)/ig, "");
 
@@ -275,7 +273,7 @@ snax.frontendSubmission = {};
      * @param wordLimit
      * @returns {boolean}
      */
-    function validateWordCount(string, wordLimit) {
+     function validateWordCount(string, wordLimit) {
 
         var is_error = false;
 
@@ -285,7 +283,7 @@ snax.frontendSubmission = {};
             //below is the current input character length. we can use it later
             charCount = string.length;
 
-        if (wordsCount > wordLimit){
+            if (wordsCount > wordLimit){
             //we fire error notice and halt all processes
             is_error = true;
             toastr.error('Sorry! you entered '+ wordsCount +' words. Must be exactly '+ wordLimit +' words','Words Limit Exceeded!');
@@ -310,7 +308,7 @@ snax.frontendSubmission = {};
      * @param string
      * @param wordLimit
      */
-    function showWordsCountNotice (string, wordLimit) {
+     function showWordsCountNotice (string, wordLimit) {
 
         //filter the post contents to remove unwanted tags
         string = filterString(string);
@@ -326,13 +324,13 @@ snax.frontendSubmission = {};
             //Then set notification message
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. You must enter exactly <span>'+ wordLimit +'</span> words'
-            );
+                );
             return false;
         } else {
             //User obeyed the rule. Set message
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. Thanks for your obedience'
-            );
+                );
 
             return false;
         }
@@ -402,19 +400,19 @@ snax.frontendSubmission = {};
             var $featuredImageContainer = $(selectors.featuredImage);
 
             if (ctx.config.featured_media_required && $featuredImageContainer.length > 0) {
-                    var $featuredImage = $featuredImageContainer.find(selectors.postThumbnail);
-                    var valid          = $featuredImage.length > 0;
+                var $featuredImage = $featuredImageContainer.find(selectors.postThumbnail);
+                var valid          = $featuredImage.length > 0;
 
-                    if (!valid) {
-                        var errorMessage = i18n.no_featured_uploaded;
+                if (!valid) {
+                    var errorMessage = i18n.no_featured_uploaded;
 
-                        alert(errorMessage);
+                    alert(errorMessage);
 
-                        e.preventDefault();
-                        e.stopPropagation();
-                        e.stopImmediatePropagation();
-                        return false;
-                    }
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    return false;
+                }
             }
 
             // Check if format requires items.
@@ -494,21 +492,21 @@ snax.frontendSubmission = {};
             // All is ok, we can process submission.
             $(selectors.publishPostButton).attr( 'disabled', 'disabled' );
         });
-    };
+};
 
-    c.focusOnTitle = function () {
+c.focusOnTitle = function () {
 
-        $(selectors.postTitle).each(function() {
-            var $title = $(this);
+    $(selectors.postTitle).each(function() {
+        var $title = $(this);
 
-            if ($title.is(':visible') && $title.val().length === 0 && !$title.is('.snax-focused')) {
-                $title.focus();
-                $title.addClass('snax-focused');
-            }
-        });
-    };
+        if ($title.is(':visible') && $title.val().length === 0 && !$title.is('.snax-focused')) {
+            $title.focus();
+            $title.addClass('snax-focused');
+        }
+    });
+};
 
-    c.applyTagIt = function () {
+c.applyTagIt = function () {
 
         // Check if jQuery script is loaded.
         if (!$.fn.tagit) {
@@ -580,7 +578,7 @@ snax.frontendSubmission = {};
              };
              */
 
-            $input.tagit(config);
+             $input.tagit(config);
 
             // Hide jQuery UI accessibility status.
             $('.ui-helper-hidden-accessible').hide();
@@ -590,12 +588,12 @@ snax.frontendSubmission = {};
             var $this = $(this);
 
             $this.find( 'input[type=text]' )
-                .on('focus', function() {
-                    $this.addClass('tagit-focus');
-                })
-                .on('blur', function() {
-                    $this.removeClass('tagit-focus');
-                });
+            .on('focus', function() {
+                $this.addClass('tagit-focus');
+            })
+            .on('blur', function() {
+                $this.removeClass('tagit-focus');
+            });
         });
     };
 
@@ -644,14 +642,14 @@ snax.frontendSubmission = {};
  *
  ******************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
     /** CONFIG *******************************************/
 
         // Register new component.
-    ctx.tabs = {};
+        ctx.tabs = {};
 
     // Component namespace shortcut.
     var c = ctx.tabs;
@@ -724,7 +722,7 @@ snax.frontendSubmission = {};
  *
  ***********************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
@@ -890,11 +888,11 @@ snax.frontendSubmission = {};
                     case 'audio':
                     case 'video':
                     case 'meme':
-                        c.loadMedia(res.args.item_id, type);
-                        break;
+                    c.loadMedia(res.args.item_id, type);
+                    break;
 
                     default:
-                        ctx.cards.addCard(res.args.item_id);
+                    ctx.cards.addCard(res.args.item_id);
                 }
             }
 
@@ -959,8 +957,8 @@ snax.frontendSubmission = {};
         }
 
         $post.
-            removeClass(classes.postWithoutMedia + ' ' + classes.postWithRemovedMedia).
-            addClass(classes.postWithMedia);
+        removeClass(classes.postWithoutMedia + ' ' + classes.postWithRemovedMedia).
+        addClass(classes.postWithMedia);
 
         if (!$(selectors.post).is('.snax-form-frontend-edit-mode')) {
             var $postTitle = $(selectors.post).find(selectors.postTitle);
@@ -983,7 +981,7 @@ snax.frontendSubmission = {};
  *
  ***********************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
@@ -1021,7 +1019,7 @@ snax.frontendSubmission = {};
     var $form;
     var $mediaForm;
     var parentFormat,
-        postId;
+    postId;
 
     /** INIT *******************************************/
 
@@ -1128,14 +1126,14 @@ snax.frontendSubmission = {};
  *
  ********************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
     /** CONFIG *******************************************/
 
         // Register new component
-    ctx.uploadDemoImages = {};
+        ctx.uploadDemoImages = {};
 
     // Component namespace shortcut
     var c = ctx.uploadDemoImages;
@@ -1232,14 +1230,14 @@ snax.frontendSubmission = {};
  *
  ********************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
     /** CONFIG *******************************************/
 
         // Register new component
-    ctx.uploadTextItems = {};
+        ctx.uploadTextItems = {};
 
     // Component namespace shortcut
     var c = ctx.uploadTextItems;
@@ -1364,8 +1362,8 @@ snax.frontendSubmission = {};
         }
 
         $post.
-            removeClass(classes.postWithoutMedia + ' ' + classes.postWithRemovedMedia).
-            addClass(classes.postWithMedia);
+        removeClass(classes.postWithoutMedia + ' ' + classes.postWithRemovedMedia).
+        addClass(classes.postWithMedia);
 
         if (!$(selectors.post).is('.snax-form-frontend-edit-mode')) {
             var $postTitle = $(selectors.post).find(selectors.postTitle);
@@ -1388,14 +1386,14 @@ snax.frontendSubmission = {};
  *
  *************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
     /** CONFIG *******************************************/
 
         // Register new component
-    ctx.uploadEmbeds = {};
+        ctx.uploadEmbeds = {};
 
     // Component namespace shortcut
     var c = ctx.uploadEmbeds;
@@ -1455,72 +1453,72 @@ snax.frontendSubmission = {};
     c.i18n      = i18n;
 
     var $forms,
-        parentFormat,
-        $embedsAll,
-        $embedProcessing,
-        $embedsProgressBar,
-        $embedsStates,
-        embedsAll,
-        embedProcessing,
-        embedsUploaded,
-        embedsFailed,
-        embedErrors,
+    parentFormat,
+    $embedsAll,
+    $embedProcessing,
+    $embedsProgressBar,
+    $embedsStates,
+    embedsAll,
+    embedProcessing,
+    embedsUploaded,
+    embedsFailed,
+    embedErrors,
         embedStates;                    // States of processed files. Format: [ { name: 1.jpg, state: 1 }, ... ].
                                         // States: 1 (success),  -1 (error), file not in array (not processed yet).
 
-    /** INIT *******************************************/
+                                        /** INIT *******************************************/
 
-    c.init = function () {
-        $forms = $(selectors.form);
+                                        c.init = function () {
+                                            $forms = $(selectors.form);
 
-        if (!$forms.length) {
-            return;
-        }
+                                            if (!$forms.length) {
+                                                return;
+                                            }
 
-        parentFormat = $(selectors.parentFormat).val();
+                                            parentFormat = $(selectors.parentFormat).val();
 
-        if (parentFormat.length === 0) {
-            snax.log('Snax Front Submission Error: Parent format not defined!');
-            return;
-        }
+                                            if (parentFormat.length === 0) {
+                                                snax.log('Snax Front Submission Error: Parent format not defined!');
+                                                return;
+                                            }
 
-        if (snax.currentUserId === 0) {
-            snax.log('Snax: Login required');
-            return;
-        }
+                                            if (snax.currentUserId === 0) {
+                                                snax.log('Snax: Login required');
+                                                return;
+                                            }
 
-        $forms.each(function() {
-            var $form = $(this);
+                                            $forms.each(function() {
+                                                var $form = $(this);
 
-            c.attachEventHandlers($form);
-        });
-    };
+                                                c.attachEventHandlers($form);
+                                            });
+                                        };
 
-    /** EVENTS *****************************************/
+                                        /** EVENTS *****************************************/
 
-    c.attachEventHandlers = function($form) {
+                                        c.attachEventHandlers = function($form) {
 
-        /* New url pasted */
+                                            /* New url pasted */
 
-        $form.on('paste drop', selectors.embedUrlsField, function() {
+                                            $form.on('paste drop', selectors.embedUrlsField, function() {
             // Delay to make sure that we can read from the field.
             setTimeout(function () {
                 $form.find(selectors.submitField).trigger('click');
             }, 200);
         });
 
-        /* New url typed */
+                                            /* New url typed */
 
-        $form.find(selectors.embedUrlsField).on('focusout', function() {
-            if($(this).val().length > 0) {
-                $(selectors.submitField).trigger('click');
-            }
-        });
+                                            $form.find(selectors.embedUrlsField).on('focusout', function() {
+                                                if($(this).val().length > 0) {
+                                                    $(selectors.submitField).trigger('click');
+                                                }
+                                            });
 
-        /* Submit url */
+                                            /* Submit url */
 
-        $form.find(selectors.submitField).on('click', function(e) {
-            e.preventDefault();
+                                            $form.find(selectors.submitField).on('click', function(e) {
+                                                e.preventDefault();
             // Collect embed codes.
             var $urls = $form.find(selectors.embedUrlsField);
             if ($('.snax-edit-post-row-media-bottom .snax-embed-url').val()) {
@@ -1557,57 +1555,57 @@ snax.frontendSubmission = {};
             c.addEmbedUrls(urls);
         });
 
-        /** Delete ***************/
+                                            /** Delete ***************/
 
-        $(selectors.embedsWrapper).on('click', selectors.embedDelete, function(e) {
-            e.preventDefault();
+                                            $(selectors.embedsWrapper).on('click', selectors.embedDelete, function(e) {
+                                                e.preventDefault();
 
-            if (!confirm(i18n.confirm)) {
-                return;
-            }
+                                                if (!confirm(i18n.confirm)) {
+                                                    return;
+                                                }
 
-            var $embed = $(this).parents(selectors.embed);
+                                                var $embed = $(this).parents(selectors.embed);
 
-            c.deleteEmbed($embed);
-        });
+                                                c.deleteEmbed($embed);
+                                            });
 
-        /** Upload demo embed *******/
+                                            /** Upload demo embed *******/
 
-        $(selectors.loadDemoEmbedButton).on('click', function(e) {
-            e.preventDefault();
+                                            $(selectors.loadDemoEmbedButton).on('click', function(e) {
+                                                e.preventDefault();
 
-            var urls = [
-                $(this).attr('href')
-            ];
+                                                var urls = [
+                                                $(this).attr('href')
+                                                ];
 
-            $(selectors.post).addClass(classes.keepDemoData);
+                                                $(selectors.post).addClass(classes.keepDemoData);
 
             // Fake uploading process.
             c.initFeedback(1);
 
             c.addEmbedUrls(urls);
         });
-    };
+                                        };
 
-    /** API *********************************************/
+                                        /** API *********************************************/
 
-    c.addEmbedUrls = function(urls) {
-        if (urls.length === 0) {
-            c.uploadFinished();
-            return;
-        }
+                                        c.addEmbedUrls = function(urls) {
+                                            if (urls.length === 0) {
+                                                c.uploadFinished();
+                                                return;
+                                            }
 
-        var url = urls.pop();
+                                            var url = urls.pop();
 
-        if (url === '') {
-            c.uploadFinished();
-            return;
-        }
+                                            if (url === '') {
+                                                c.uploadFinished();
+                                                return;
+                                            }
 
-        if ('text' === parentFormat) {
-            c.addContentEmbed(url);
+                                            if ('text' === parentFormat) {
+                                                c.addContentEmbed(url);
 
-            c.embedProcessed(1);
+                                                c.embedProcessed(1);
 
             // Process next url.
             c.addEmbedUrls(urls);
@@ -1626,14 +1624,14 @@ snax.frontendSubmission = {};
                         case 'embed':
                         case 'video':
                         case 'audio':
-                            c.addEmbed(res.args.item_id);
-                            if ( res.args.thumbnail ) {
-                                $('.snax-tab-content-featured-image .snax-media-upload-form').trigger('snaxFileUploaded', [ res.args.thumbnail ]);
-                            }
-                            break;
+                        c.addEmbed(res.args.item_id);
+                        if ( res.args.thumbnail ) {
+                            $('.snax-tab-content-featured-image .snax-media-upload-form').trigger('snaxFileUploaded', [ res.args.thumbnail ]);
+                        }
+                        break;
 
                         default:
-                            ctx.cards.addCard(res.args.item_id);
+                        ctx.cards.addCard(res.args.item_id);
                     }
 
                     c.embedProcessed(1);
@@ -1769,8 +1767,8 @@ snax.frontendSubmission = {};
 
         if (currentState !== 0) {
             $embedState.
-                removeClass(classes.embedStateProcessing).
-                addClass(currentState === 1 ? classes.embedStateSuccess : classes.embedStateError);
+            removeClass(classes.embedStateProcessing).
+            addClass(currentState === 1 ? classes.embedStateSuccess : classes.embedStateError);
 
             if (currentState === -1) {
                 var errorMessage = embedErrors[currentIndex];
@@ -1833,7 +1831,7 @@ snax.frontendSubmission = {};
  *
  *******************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
@@ -1890,8 +1888,8 @@ snax.frontendSubmission = {};
     c.i18n      = i18n;
 
     var $form,
-        cardsLimit,
-        cardsCount;
+    cardsLimit,
+    cardsCount;
 
     /** INIT *******************************************/
 
@@ -2196,7 +2194,7 @@ snax.frontendSubmission = {};
  *
  ***************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
@@ -2777,7 +2775,7 @@ snax.frontendSubmission = {};
      * @param image_type    Image type.
      * @param quality       Image quality.
      */
-    c.getBlobFromCanvas = function(callback, image_type, quality) {
+     c.getBlobFromCanvas = function(callback, image_type, quality) {
         var canvasDOM = $canvas.get(0);
 
         // Is blob supported in the browser?
@@ -2787,9 +2785,9 @@ snax.frontendSubmission = {};
             }, image_type, quality);
 
         // Get Base64 dataurl from canvas, then try to convert it to Blob.
-        } else {
-            var dataUrl = canvasDOM.toDataURL(image_type, quality);
-            var blob = null;
+    } else {
+        var dataUrl = canvasDOM.toDataURL(image_type, quality);
+        var blob = null;
 
             // Try to convert dataURL to Blob (requires https://unpkg.com/blob-util/dist/blob-util.min.js).
             if (typeof blobUtil !== 'undefined' && blobUtil.dataURLToBlob) {
@@ -2813,7 +2811,7 @@ snax.frontendSubmission = {};
  *
  ***************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
@@ -2873,7 +2871,7 @@ snax.frontendSubmission = {};
  *
  ***************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
     'use strict';
 
@@ -2935,9 +2933,9 @@ snax.frontendSubmission = {};
  *
  ***************************/
 
-(function ($, ctx) {
+ (function ($, ctx) {
 
-        'use strict';
+    'use strict';
 
         // Register new component
         ctx.memeTemplates = {};
@@ -2981,8 +2979,8 @@ snax.frontendSubmission = {};
                 }
 
                 $post.
-                    removeClass(classes.postWithoutMedia + ' ' + classes.postWithRemovedMedia).
-                    addClass(classes.postWithMedia);
+                removeClass(classes.postWithoutMedia + ' ' + classes.postWithRemovedMedia).
+                addClass(classes.postWithMedia);
 
                 $('#snax-post-title').val($this.attr('data-bimber-template-title'));
 
