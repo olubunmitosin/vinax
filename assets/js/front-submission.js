@@ -140,9 +140,12 @@ snax.frontendSubmission = {};
 
         var showNotice = setInterval(function () {
 
-         if (document.getElementById(selectors.postNoticeBox)) {
+         if (document.getElementById('snax-post-title')) {
+            console.log('found');
                 //it's the editor page so show notice
                 showWordsCountNotice($postContentEditorValue.val(), $postDescriptionWordLimit)
+            }else{
+                console.log('not found')
             }
         }, 500);
 
