@@ -137,15 +137,11 @@ snax.frontendSubmission = {};
         //we set it as a variable so we can clear it anytime
         //if need arise to do so.
 
-
         var showNotice = setInterval(function () {
 
          if (document.getElementById('snax-post-title')) {
-            console.log('found');
                 //it's the editor page so show notice
                 showWordsCountNotice($postContentEditorValue.val(), $postDescriptionWordLimit)
-            }else{
-                console.log('not found')
             }
         }, 500);
 
@@ -369,12 +365,22 @@ snax.frontendSubmission = {};
         $form.on('submit', function(e) {
             var $wrapper = $(this);
 
+            /////////////////////////////////////////////////////////////
+            //Perform word limit validation here
+            // $postDescriptionMaxLength //we might use it later
+            if ( validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit) ){
+                //this means is_error flag is set to true. So we prevent further submission actions.
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                return false;
+            }
+
             // Check if title is filled.
             var $postTitle = $(selectors.postTitle);
 
             if ($postTitle.val().length === 0) {
                 var $postContentTitle = $(selectors.postContentTitle);  // Content editable elements (H1).
-                console.log($postContentTitle);
 
                 // Content editable field exists and it's empty.
                 if ($postContentTitle.length > 0 && $postContentTitle.text().length === 0) {
@@ -387,17 +393,6 @@ snax.frontendSubmission = {};
                 } else {
                     $postTitle.val($postContentTitle.text());
                 }
-            }
-
-            /////////////////////////////////////////////////////////////
-            //Perform word limit validation here
-            // $postDescriptionMaxLength //we might use it later
-            if (validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit) === true ){
-                //this means is_error flag is set to true. So we prevent further submission actions.
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                return false;
             }
 
             var $featuredImageContainer = $(selectors.featuredImage);
