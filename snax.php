@@ -665,6 +665,8 @@ if ( ! class_exists( 'Snax' ) ) :
 
 				wp_enqueue_script( 'snax-front-submission', 		$this->assets_url . 'js/front-submission.js', array( 'snax-front' ), $this->version, true );
 
+				wp_enqueue_script( 'snax-browser-detech', 		$this->assets_url . 'js/browser_detect.js', array( 'jquery' ), $this->version, true );
+
 				// Client-Side Image Resize.
 				$large_size_h = absint( get_option('large_size_h') );
 				if ( ! $large_size_h ) { $large_size_h = 1024; }

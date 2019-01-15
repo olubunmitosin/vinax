@@ -150,6 +150,7 @@ snax.frontendSubmission = {};
     /** INIT *******************************************/
 
     c.init = function () {
+        c.validateBrowser();
         c.attachEventHandlers();
     };
 
@@ -165,6 +166,16 @@ snax.frontendSubmission = {};
         c.cancel();
 
     };
+
+    c.validateBrowser = function () {
+        // if (BrowserDetect.browser === 'Safari' && BrowserDetect.version < 6) {
+
+        //     //Javascript goes here
+
+        // }
+
+        console.log(BrowserDetect.browser);
+    }
 
     c.clearDemoDataOnPageLoaded = function() {
         var $post = $(selectors.post);
