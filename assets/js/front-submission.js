@@ -150,7 +150,7 @@ snax.frontendSubmission = {};
     /** INIT *******************************************/
 
     c.init = function () {
-        c.validateBrowser();
+        // c.validateBrowser();
         c.attachEventHandlers();
     };
 
@@ -168,13 +168,11 @@ snax.frontendSubmission = {};
     };
 
     c.validateBrowser = function () {
-        // if (BrowserDetect.browser === 'Safari' && BrowserDetect.version < 6) {
+        if (BrowserDetect.browser === 'Netscape' || BrowserDetect.browser === 'Explorer') { 
+            toastr.error('You browser is not supported. Please use chrome or Mozilla Browser from version 20 upwards','Browser Not Supported');
+            return false;
 
-        //     //Javascript goes here
-
-        // }
-
-        console.log(BrowserDetect.browser);
+        }
     }
 
     c.clearDemoDataOnPageLoaded = function() {
