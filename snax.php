@@ -510,7 +510,7 @@ if ( ! class_exists( 'Snax' ) ) :
             $true = true;
 
 //			if ( snax_is_frontend_submission_page() || $is_list_open_for_contribution ) {
-			if ( $true || $is_list_open_for_contribution ) {
+			if ( snax_is_frontend_submission_page() || $is_list_open_for_contribution ) {
 				// Media element for MEJS player, for videos.
 				wp_enqueue_style( 'wp-mediaelement' );
 
@@ -567,8 +567,8 @@ if ( ! class_exists( 'Snax' ) ) :
 			$is_list_open_for_contribution  = snax_is_format( 'list' ) && is_single();
 			$is_frontend_submission_page    = snax_is_frontend_submission_page();
 
-//			$is_snax_page = $is_list_open_for_contribution || $is_frontend_submission_page;
-			$is_snax_page = $is_list_open_for_contribution || $true;
+			$is_snax_page = $is_list_open_for_contribution || $is_frontend_submission_page;
+//			$is_snax_page = $is_list_open_for_contribution || $true;
 
 			$deps = array( 'jquery' );
 

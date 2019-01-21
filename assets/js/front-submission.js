@@ -64,7 +64,7 @@ snax.frontendSubmission = {};
  *
  ******************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
@@ -125,7 +125,7 @@ snax.frontendSubmission = {};
 
 
 
-    var $postDescriptionWordLimit = $(selectors.postDescription).data('wordlimit');
+    var $postDescriptionWordLimit = $(selectors.postDescription).attr('wordlimit');
     var $postDescriptionMaxLength = $(selectors.postDescription).attr('maxLength');
     var $postContentEditorValue = $(selectors.postContentEditor);
     var $postContentNoticeBox = $(selectors.postNoticeBox);
@@ -139,11 +139,11 @@ snax.frontendSubmission = {};
 
         var showNotice = setInterval(function () {
 
-         if (document.getElementById('snax-post-title')) {
+            if (document.getElementById('snax-post-title')) {
                 //it's the editor page so show notice
                 showWordsCountNotice($postContentEditorValue.val(), $postDescriptionWordLimit)
             }
-        }, 500);
+        }, 100);
 
     });
 
@@ -157,6 +157,7 @@ snax.frontendSubmission = {};
     /** EVENTS *****************************************/
 
     c.attachEventHandlers = function() {
+        c.validateBrowser();
         c.validateForm();
         c.focusOnTitle();
         c.categoryRequirement();
@@ -168,12 +169,12 @@ snax.frontendSubmission = {};
     };
 
     c.validateBrowser = function () {
-        if (BrowserDetect.browser === 'Netscape' || BrowserDetect.browser === 'Explorer') { 
+        if (BrowserDetect.browser === 'Netscape' || BrowserDetect.browser === 'Explorer') {
             toastr.error('You browser is not supported. Please use chrome or Mozilla Browser from version 20 upwards','Browser Not Supported');
             return false;
 
         }
-    }
+    };
 
     c.clearDemoDataOnPageLoaded = function() {
         var $post = $(selectors.post);
@@ -245,7 +246,9 @@ snax.frontendSubmission = {};
      * @param string
      * @returns {*}
      */
-     function filterString(string) {
+    function filterString(string) {
+
+        string = string.replace(/^\s+|\s+$/gm,'');
         //strip off all html tags
         string = string.replace(/(<([^>]+)>)/ig, "");
 
@@ -272,7 +275,7 @@ snax.frontendSubmission = {};
      * @param wordLimit
      * @returns {boolean}
      */
-     function validateWordCount(string, wordLimit) {
+    function validateWordCount(string, wordLimit) {
 
         var is_error = false;
 
@@ -282,18 +285,14 @@ snax.frontendSubmission = {};
             //below is the current input character length. we can use it later
             charCount = string.length;
 
-            if (wordsCount > wordLimit){
-            //we fire error notice and halt all processes
-            is_error = true;
-            toastr.error('Sorry! you entered '+ wordsCount +' words. Must be exactly '+ wordLimit +' words','Words Limit Exceeded!');
-        }else if (wordsCount < wordLimit){
+        if (wordsCount > wordLimit || wordsCount < wordLimit){
             //we fire error notice and halt all processes
             is_error = true;
             toastr.error('Number of words entered is ' + wordsCount + ' which is less than '+ wordLimit + ' words. Please enter exactly '+ wordLimit + ' words','Words Limit Not Reached');
         }else{
             is_error = false;
+            $(selectors.postDescription).attr('maxLength',charCount);
             toastr.success('Hurray! You can now submit your post.','Words Limit Rule Obeyed');
-
         }
         //'Editor contains '+ wordsCount + ' words and '+ charCount + ' characters. But max word is '+wordLimit
         return is_error;
@@ -307,7 +306,7 @@ snax.frontendSubmission = {};
      * @param string
      * @param wordLimit
      */
-     function showWordsCountNotice (string, wordLimit) {
+    function showWordsCountNotice (string, wordLimit) {
 
         //filter the post contents to remove unwanted tags
         string = filterString(string);
@@ -319,18 +318,21 @@ snax.frontendSubmission = {};
         //first we need to clear our notification boc container
         $postContentNoticeBox.html('');
 
+        if (wordsCount === 1 ) {
+            wordsCount = 0;
+        }
+
         if ( wordsCount < wordLimit || wordsCount > wordLimit ){
             //Then set notification message
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. You must enter exactly <span>'+ wordLimit +'</span> words'
-                );
+            );
             return false;
-        } else {
+        }else {
             //User obeyed the rule. Set message
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. Thanks for your obedience'
-                );
-
+            );
             return false;
         }
     }
@@ -344,7 +346,7 @@ snax.frontendSubmission = {};
             /////////////////////////////////////////////////////////////
             //Perform word limit validation here
             // $postDescriptionMaxLength
-            if (validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit) === true ){
+            if (validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit)){
                 e.preventDefault();
                 e.stopPropagation();
                 e.stopImmediatePropagation();
@@ -368,7 +370,7 @@ snax.frontendSubmission = {};
             /////////////////////////////////////////////////////////////
             //Perform word limit validation here
             // $postDescriptionMaxLength //we might use it later
-            if ( validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit) ){
+            if ( validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit)){
                 //this means is_error flag is set to true. So we prevent further submission actions.
                 e.preventDefault();
                 e.stopPropagation();
@@ -490,21 +492,21 @@ snax.frontendSubmission = {};
             // All is ok, we can process submission.
             $(selectors.publishPostButton).attr( 'disabled', 'disabled' );
         });
-};
+    };
 
-c.focusOnTitle = function () {
+    c.focusOnTitle = function () {
 
-    $(selectors.postTitle).each(function() {
-        var $title = $(this);
+        $(selectors.postTitle).each(function() {
+            var $title = $(this);
 
-        if ($title.is(':visible') && $title.val().length === 0 && !$title.is('.snax-focused')) {
-            $title.focus();
-            $title.addClass('snax-focused');
-        }
-    });
-};
+            if ($title.is(':visible') && $title.val().length === 0 && !$title.is('.snax-focused')) {
+                $title.focus();
+                $title.addClass('snax-focused');
+            }
+        });
+    };
 
-c.applyTagIt = function () {
+    c.applyTagIt = function () {
 
         // Check if jQuery script is loaded.
         if (!$.fn.tagit) {
@@ -570,13 +572,13 @@ c.applyTagIt = function () {
 
              // Way to override tagIt config. Here to change placeholder text only.
              snax.frontendSubmission.form.tagitConfig = function (config) {
-                 config.placeholderText = 'Separate tags with Enter'
+             config.placeholderText = 'Separate tags with Enter'
 
-                 return config;
+             return config;
              };
              */
 
-             $input.tagit(config);
+            $input.tagit(config);
 
             // Hide jQuery UI accessibility status.
             $('.ui-helper-hidden-accessible').hide();
@@ -586,12 +588,12 @@ c.applyTagIt = function () {
             var $this = $(this);
 
             $this.find( 'input[type=text]' )
-            .on('focus', function() {
-                $this.addClass('tagit-focus');
-            })
-            .on('blur', function() {
-                $this.removeClass('tagit-focus');
-            });
+                .on('focus', function() {
+                    $this.addClass('tagit-focus');
+                })
+                .on('blur', function() {
+                    $this.removeClass('tagit-focus');
+                });
         });
     };
 
@@ -640,14 +642,14 @@ c.applyTagIt = function () {
  *
  ******************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
     /** CONFIG *******************************************/
 
-        // Register new component.
-        ctx.tabs = {};
+    // Register new component.
+    ctx.tabs = {};
 
     // Component namespace shortcut.
     var c = ctx.tabs;
@@ -720,7 +722,7 @@ c.applyTagIt = function () {
  *
  ***********************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
@@ -886,11 +888,11 @@ c.applyTagIt = function () {
                     case 'audio':
                     case 'video':
                     case 'meme':
-                    c.loadMedia(res.args.item_id, type);
-                    break;
+                        c.loadMedia(res.args.item_id, type);
+                        break;
 
                     default:
-                    ctx.cards.addCard(res.args.item_id);
+                        ctx.cards.addCard(res.args.item_id);
                 }
             }
 
@@ -979,7 +981,7 @@ c.applyTagIt = function () {
  *
  ***********************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
@@ -1017,7 +1019,7 @@ c.applyTagIt = function () {
     var $form;
     var $mediaForm;
     var parentFormat,
-    postId;
+        postId;
 
     /** INIT *******************************************/
 
@@ -1124,14 +1126,14 @@ c.applyTagIt = function () {
  *
  ********************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
     /** CONFIG *******************************************/
 
-        // Register new component
-        ctx.uploadDemoImages = {};
+    // Register new component
+    ctx.uploadDemoImages = {};
 
     // Component namespace shortcut
     var c = ctx.uploadDemoImages;
@@ -1228,14 +1230,14 @@ c.applyTagIt = function () {
  *
  ********************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
     /** CONFIG *******************************************/
 
-        // Register new component
-        ctx.uploadTextItems = {};
+    // Register new component
+    ctx.uploadTextItems = {};
 
     // Component namespace shortcut
     var c = ctx.uploadTextItems;
@@ -1384,14 +1386,14 @@ c.applyTagIt = function () {
  *
  *************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
     /** CONFIG *******************************************/
 
-        // Register new component
-        ctx.uploadEmbeds = {};
+    // Register new component
+    ctx.uploadEmbeds = {};
 
     // Component namespace shortcut
     var c = ctx.uploadEmbeds;
@@ -1451,72 +1453,72 @@ c.applyTagIt = function () {
     c.i18n      = i18n;
 
     var $forms,
-    parentFormat,
-    $embedsAll,
-    $embedProcessing,
-    $embedsProgressBar,
-    $embedsStates,
-    embedsAll,
-    embedProcessing,
-    embedsUploaded,
-    embedsFailed,
-    embedErrors,
+        parentFormat,
+        $embedsAll,
+        $embedProcessing,
+        $embedsProgressBar,
+        $embedsStates,
+        embedsAll,
+        embedProcessing,
+        embedsUploaded,
+        embedsFailed,
+        embedErrors,
         embedStates;                    // States of processed files. Format: [ { name: 1.jpg, state: 1 }, ... ].
                                         // States: 1 (success),  -1 (error), file not in array (not processed yet).
 
-                                        /** INIT *******************************************/
+    /** INIT *******************************************/
 
-                                        c.init = function () {
-                                            $forms = $(selectors.form);
+    c.init = function () {
+        $forms = $(selectors.form);
 
-                                            if (!$forms.length) {
-                                                return;
-                                            }
+        if (!$forms.length) {
+            return;
+        }
 
-                                            parentFormat = $(selectors.parentFormat).val();
+        parentFormat = $(selectors.parentFormat).val();
 
-                                            if (parentFormat.length === 0) {
-                                                snax.log('Snax Front Submission Error: Parent format not defined!');
-                                                return;
-                                            }
+        if (parentFormat.length === 0) {
+            snax.log('Snax Front Submission Error: Parent format not defined!');
+            return;
+        }
 
-                                            if (snax.currentUserId === 0) {
-                                                snax.log('Snax: Login required');
-                                                return;
-                                            }
+        if (snax.currentUserId === 0) {
+            snax.log('Snax: Login required');
+            return;
+        }
 
-                                            $forms.each(function() {
-                                                var $form = $(this);
+        $forms.each(function() {
+            var $form = $(this);
 
-                                                c.attachEventHandlers($form);
-                                            });
-                                        };
+            c.attachEventHandlers($form);
+        });
+    };
 
-                                        /** EVENTS *****************************************/
+    /** EVENTS *****************************************/
 
-                                        c.attachEventHandlers = function($form) {
+    c.attachEventHandlers = function($form) {
 
-                                            /* New url pasted */
+        /* New url pasted */
 
-                                            $form.on('paste drop', selectors.embedUrlsField, function() {
+        $form.on('paste drop', selectors.embedUrlsField, function() {
             // Delay to make sure that we can read from the field.
             setTimeout(function () {
                 $form.find(selectors.submitField).trigger('click');
             }, 200);
         });
 
-                                            /* New url typed */
+        /* New url typed */
 
-                                            $form.find(selectors.embedUrlsField).on('focusout', function() {
-                                                if($(this).val().length > 0) {
-                                                    $(selectors.submitField).trigger('click');
-                                                }
-                                            });
+        $form.find(selectors.embedUrlsField).on('focusout', function() {
+            if($(this).val().length > 0) {
+                $(selectors.submitField).trigger('click');
+            }
+        });
 
-                                            /* Submit url */
+        /* Submit url */
 
-                                            $form.find(selectors.submitField).on('click', function(e) {
-                                                e.preventDefault();
+        $form.find(selectors.submitField).on('click', function(e) {
+            e.preventDefault();
             // Collect embed codes.
             var $urls = $form.find(selectors.embedUrlsField);
             if ($('.snax-edit-post-row-media-bottom .snax-embed-url').val()) {
@@ -1553,57 +1555,57 @@ c.applyTagIt = function () {
             c.addEmbedUrls(urls);
         });
 
-                                            /** Delete ***************/
+        /** Delete ***************/
 
-                                            $(selectors.embedsWrapper).on('click', selectors.embedDelete, function(e) {
-                                                e.preventDefault();
+        $(selectors.embedsWrapper).on('click', selectors.embedDelete, function(e) {
+            e.preventDefault();
 
-                                                if (!confirm(i18n.confirm)) {
-                                                    return;
-                                                }
+            if (!confirm(i18n.confirm)) {
+                return;
+            }
 
-                                                var $embed = $(this).parents(selectors.embed);
+            var $embed = $(this).parents(selectors.embed);
 
-                                                c.deleteEmbed($embed);
-                                            });
+            c.deleteEmbed($embed);
+        });
 
-                                            /** Upload demo embed *******/
+        /** Upload demo embed *******/
 
-                                            $(selectors.loadDemoEmbedButton).on('click', function(e) {
-                                                e.preventDefault();
+        $(selectors.loadDemoEmbedButton).on('click', function(e) {
+            e.preventDefault();
 
-                                                var urls = [
-                                                $(this).attr('href')
-                                                ];
+            var urls = [
+                $(this).attr('href')
+            ];
 
-                                                $(selectors.post).addClass(classes.keepDemoData);
+            $(selectors.post).addClass(classes.keepDemoData);
 
             // Fake uploading process.
             c.initFeedback(1);
 
             c.addEmbedUrls(urls);
         });
-                                        };
+    };
 
-                                        /** API *********************************************/
+    /** API *********************************************/
 
-                                        c.addEmbedUrls = function(urls) {
-                                            if (urls.length === 0) {
-                                                c.uploadFinished();
-                                                return;
-                                            }
+    c.addEmbedUrls = function(urls) {
+        if (urls.length === 0) {
+            c.uploadFinished();
+            return;
+        }
 
-                                            var url = urls.pop();
+        var url = urls.pop();
 
-                                            if (url === '') {
-                                                c.uploadFinished();
-                                                return;
-                                            }
+        if (url === '') {
+            c.uploadFinished();
+            return;
+        }
 
-                                            if ('text' === parentFormat) {
-                                                c.addContentEmbed(url);
+        if ('text' === parentFormat) {
+            c.addContentEmbed(url);
 
-                                                c.embedProcessed(1);
+            c.embedProcessed(1);
 
             // Process next url.
             c.addEmbedUrls(urls);
@@ -1622,14 +1624,14 @@ c.applyTagIt = function () {
                         case 'embed':
                         case 'video':
                         case 'audio':
-                        c.addEmbed(res.args.item_id);
-                        if ( res.args.thumbnail ) {
-                            $('.snax-tab-content-featured-image .snax-media-upload-form').trigger('snaxFileUploaded', [ res.args.thumbnail ]);
-                        }
-                        break;
+                            c.addEmbed(res.args.item_id);
+                            if ( res.args.thumbnail ) {
+                                $('.snax-tab-content-featured-image .snax-media-upload-form').trigger('snaxFileUploaded', [ res.args.thumbnail ]);
+                            }
+                            break;
 
                         default:
-                        ctx.cards.addCard(res.args.item_id);
+                            ctx.cards.addCard(res.args.item_id);
                     }
 
                     c.embedProcessed(1);
@@ -1829,7 +1831,7 @@ c.applyTagIt = function () {
  *
  *******************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
@@ -1886,8 +1888,8 @@ c.applyTagIt = function () {
     c.i18n      = i18n;
 
     var $form,
-    cardsLimit,
-    cardsCount;
+        cardsLimit,
+        cardsCount;
 
     /** INIT *******************************************/
 
@@ -2192,7 +2194,7 @@ c.applyTagIt = function () {
  *
  ***************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
@@ -2204,12 +2206,12 @@ c.applyTagIt = function () {
 
     /** CONFIG *******************************************/
 
-    // CSS selectors
+        // CSS selectors
     var selectors = {
-        'image':            'form.snax-meme .snax-form-main .snax-image img',
-        'topTextInput':     'input#snax-post-meme-top-text',
-        'bottomTextInput':  'input#snax-post-meme-bottom-text'
-    };
+            'image':            'form.snax-meme .snax-form-main .snax-image img',
+            'topTextInput':     'input#snax-post-meme-top-text',
+            'bottomTextInput':  'input#snax-post-meme-bottom-text'
+        };
 
     // CSS classes
     var classes = {};
@@ -2773,7 +2775,7 @@ c.applyTagIt = function () {
      * @param image_type    Image type.
      * @param quality       Image quality.
      */
-     c.getBlobFromCanvas = function(callback, image_type, quality) {
+    c.getBlobFromCanvas = function(callback, image_type, quality) {
         var canvasDOM = $canvas.get(0);
 
         // Is blob supported in the browser?
@@ -2782,10 +2784,10 @@ c.applyTagIt = function () {
                 callback(blob, true);
             }, image_type, quality);
 
-        // Get Base64 dataurl from canvas, then try to convert it to Blob.
-    } else {
-        var dataUrl = canvasDOM.toDataURL(image_type, quality);
-        var blob = null;
+            // Get Base64 dataurl from canvas, then try to convert it to Blob.
+        } else {
+            var dataUrl = canvasDOM.toDataURL(image_type, quality);
+            var blob = null;
 
             // Try to convert dataURL to Blob (requires https://unpkg.com/blob-util/dist/blob-util.min.js).
             if (typeof blobUtil !== 'undefined' && blobUtil.dataURLToBlob) {
@@ -2809,7 +2811,7 @@ c.applyTagIt = function () {
  *
  ***************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
@@ -2869,7 +2871,7 @@ c.applyTagIt = function () {
  *
  ***************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
@@ -2931,73 +2933,73 @@ c.applyTagIt = function () {
  *
  ***************************/
 
- (function ($, ctx) {
+(function ($, ctx) {
 
     'use strict';
 
-        // Register new component
-        ctx.memeTemplates = {};
+    // Register new component
+    ctx.memeTemplates = {};
 
-        // Component namespace shortcut
-        var c = ctx.memeTemplates;
+    // Component namespace shortcut
+    var c = ctx.memeTemplates;
 
-        var selectors = {
-            'post':                     '.snax-form-frontend',
-            'templatesTab':             '.snax-tab-content-meme-templates'
-        };
+    var selectors = {
+        'post':                     '.snax-form-frontend',
+        'templatesTab':             '.snax-tab-content-meme-templates'
+    };
 
-        var classes = {
-            'postWithoutMedia':     'snax-form-frontend-without-media',
-            'postWithMedia':        'snax-form-frontend-with-media',
-            'postWithRemovedMedia': 'snax-form-frontend-with-removed-media'
-        };
+    var classes = {
+        'postWithoutMedia':     'snax-form-frontend-without-media',
+        'postWithMedia':        'snax-form-frontend-with-media',
+        'postWithRemovedMedia': 'snax-form-frontend-with-removed-media'
+    };
 
-        /** INIT *******************************************/
+    /** INIT *******************************************/
 
-        c.init = function () {
-            $('.snax-meme-template').on('click', function() {
-                var $this = $(this);
-                $('#snax-post-meme-top-text').val($this.attr('data-bimber-template-top-text'));
-                $('#snax-post-meme-bottom-text').val($this.attr('data-bimber-template-bottom-text'));
-                $(selectors.templatesTab).removeClass('snax-tab-content-current');
-                var mediaId = $this.attr('data-bimber-template-img');
-                var data = {
-                    'memeTemplate':  $this.attr('data-bimber-template'),
-                    'title':        $this.attr('data-bimber-template-title')
-                };
-                ctx.uploadMedia.createMedia(mediaId, 'image', null, data);
+    c.init = function () {
+        $('.snax-meme-template').on('click', function() {
+            var $this = $(this);
+            $('#snax-post-meme-top-text').val($this.attr('data-bimber-template-top-text'));
+            $('#snax-post-meme-bottom-text').val($this.attr('data-bimber-template-bottom-text'));
+            $(selectors.templatesTab).removeClass('snax-tab-content-current');
+            var mediaId = $this.attr('data-bimber-template-img');
+            var data = {
+                'memeTemplate':  $this.attr('data-bimber-template'),
+                'title':        $this.attr('data-bimber-template-title')
+            };
+            ctx.uploadMedia.createMedia(mediaId, 'image', null, data);
 
-                ctx.form.clearDemoDataOnMediaUploaded();
+            ctx.form.clearDemoDataOnMediaUploaded();
 
-                var $post = $(selectors.post);
+            var $post = $(selectors.post);
 
-                // Switch from "Init" form to "Full" form.
-                if ($post.hasClass(classes.postWithoutMedia)) {
-                    $('body').trigger('snaxFullFormLoaded', [$post]);
-                }
-
-                $post.
-                removeClass(classes.postWithoutMedia + ' ' + classes.postWithRemovedMedia).
-                addClass(classes.postWithMedia);
-
-                $('#snax-post-title').val($this.attr('data-bimber-template-title'));
-
-                $('html, body').animate({
-                    scrollTop: $(".snax-form-frontend").offset().top
-                }, 100);
-
-            });
-            $('body').on('snaxMediaRemoved', function(){
-                $(selectors.templatesTab).addClass('snax-tab-content-current');
-                $(selectors.templatesTab).removeClass('snax-tab-content-hidden');
-                $(selectors.templatesTab).addClass('snax-tab-content-visible');
-            });
-
-            var templateInURL = snax.getUrlParameter('meme_template');
-            if (typeof templateInURL !== 'undefined' && $('.snax-edit-post-row-image').children().length === 0) {
-                $('.snax-meme-template-' + templateInURL).trigger('click');
+            // Switch from "Init" form to "Full" form.
+            if ($post.hasClass(classes.postWithoutMedia)) {
+                $('body').trigger('snaxFullFormLoaded', [$post]);
             }
-        };
+
+            $post.
+            removeClass(classes.postWithoutMedia + ' ' + classes.postWithRemovedMedia).
+            addClass(classes.postWithMedia);
+
+            $('#snax-post-title').val($this.attr('data-bimber-template-title'));
+
+            $('html, body').animate({
+                scrollTop: $(".snax-form-frontend").offset().top
+            }, 100);
+
+        });
+        $('body').on('snaxMediaRemoved', function(){
+            $(selectors.templatesTab).addClass('snax-tab-content-current');
+            $(selectors.templatesTab).removeClass('snax-tab-content-hidden');
+            $(selectors.templatesTab).addClass('snax-tab-content-visible');
+        });
+
+        var templateInURL = snax.getUrlParameter('meme_template');
+        if (typeof templateInURL !== 'undefined' && $('.snax-edit-post-row-image').children().length === 0) {
+            $('.snax-meme-template-' + templateInURL).trigger('click');
+        }
+    };
 
 
-    })(jQuery, snax.frontendSubmission);
+})(jQuery, snax.frontendSubmission);
