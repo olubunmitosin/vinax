@@ -557,6 +557,8 @@ if ( ! class_exists( 'Snax' ) ) :
 			// Popup.
 			wp_enqueue_script( 'jquery-magnific-popup', $this->assets_url . 'js/jquery.magnific-popup/jquery.magnific-popup.min.js', array( 'jquery' ), '1.1.0', true );
 
+            wp_enqueue_script( 'snax-lodash', 		$this->assets_url . 'js/lodash.js', array(), $this->version, true );
+
             //Toastr Notification Plugin
             wp_enqueue_script( 'snax-toastr-js', $this->assets_url . 'js/toastr/toastr.min.js', array( 'jquery' ), '1.1.0', true );
 

@@ -1,6 +1,9 @@
 .toast-title {
     font-weight: bold;
 }
+#toast-container > div {
+    opacity: 1 !important;
+}
 .toast-message {
     -ms-word-wrap: break-word;
     word-wrap: break-word;

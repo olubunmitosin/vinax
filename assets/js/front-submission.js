@@ -137,11 +137,14 @@ snax.frontendSubmission = {};
         //we set it as a variable so we can clear it anytime
         //if need arise to do so.
 
+        // console.log(filterString($postContentEditorValue.val()));
+
         var showNotice = setInterval(function () {
 
             if (document.getElementById('snax-post-title')) {
                 //it's the editor page so show notice
-                showWordsCountNotice($postContentEditorValue.val(), $postDescriptionWordLimit)
+                showWordsCountNotice($postContentEditorValue.val(), 100);
+                // console.log(filterString("wow"));
             }
         }, 100);
 
@@ -157,7 +160,7 @@ snax.frontendSubmission = {};
     /** EVENTS *****************************************/
 
     c.attachEventHandlers = function() {
-        c.validateBrowser();
+        // c.validateBrowser();
         c.validateForm();
         c.focusOnTitle();
         c.categoryRequirement();
@@ -247,24 +250,8 @@ snax.frontendSubmission = {};
      * @returns {*}
      */
     function filterString(string) {
-
-        string = string.replace(/^\s+|\s+$/gm,'');
-        //strip off all html tags
-        string = string.replace(/(<([^>]+)>)/ig, "");
-
-        //strip off $nbsp; from string
-        string = string.replace(/[$]nbsp[;]/ig, " ");
-
-        //exclude  start and end white-space
-        string = string.replace(/(^\s*)|(\s*$)/gi,"");
-
-        //convert 2 or more spaces to 1
-        string = string.replace(/[ ]{2,}/gi," ");
-
-        // exclude newline with a start spacing
-        string = string.replace(/\n /,"\n");
-
-        return string;
+        string = string.trim();
+        return _.size(string.split(" "));
     }
 
 
@@ -281,18 +268,18 @@ snax.frontendSubmission = {};
 
         string = filterString(string);
 
-        var wordsCount = string.split(" ").length,
+        var wordsCount = string,//string.split(" ").length,
             //below is the current input character length. we can use it later
             charCount = string.length;
 
-        if (wordsCount > wordLimit || wordsCount < wordLimit){
+        if (wordsCount === wordLimit){
             //we fire error notice and halt all processes
-            is_error = true;
-            toastr.error('Number of words entered is ' + wordsCount + ' which is less than '+ wordLimit + ' words. Please enter exactly '+ wordLimit + ' words','Words Limit Not Reached');
-        }else{
             is_error = false;
-            $(selectors.postDescription).attr('maxLength',charCount);
+            // $(selectors.postDescription).attr('maxLength',charCount);
             toastr.success('Hurray! You can now submit your post.','Words Limit Rule Obeyed');
+        }else{
+            is_error = true;
+            toastr.error('Number of words entered is ' + wordsCount + '. Please enter exactly '+ wordLimit + ' words','Words Limit Not Reached');
         }
         //'Editor contains '+ wordsCount + ' words and '+ charCount + ' characters. But max word is '+wordLimit
         return is_error;
@@ -311,7 +298,7 @@ snax.frontendSubmission = {};
         //filter the post contents to remove unwanted tags
         string = filterString(string);
 
-        var wordsCount = string.split(" ").length,
+        var wordsCount = string,//string.split(" ").length,
             //below is the current input character length. we can use it later
             charCount = string.length;
 
@@ -322,16 +309,17 @@ snax.frontendSubmission = {};
             wordsCount = 0;
         }
 
-        if ( wordsCount < wordLimit || wordsCount > wordLimit ){
+        if ( wordsCount === wordLimit ){
             //Then set notification message
-            $postContentNoticeBox.html(
-                'You have entered <span>'+ wordsCount +'</span> number of words. You must enter exactly <span>'+ wordLimit +'</span> words'
-            );
-            return false;
-        }else {
             //User obeyed the rule. Set message
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. Thanks for your obedience'
+            );
+            return false;
+
+        }else {
+            $postContentNoticeBox.html(
+                'You have entered <span>'+ wordsCount +'</span> number of words. You must enter exactly <span>'+ wordLimit +'</span> words'
             );
             return false;
         }
@@ -346,7 +334,7 @@ snax.frontendSubmission = {};
             /////////////////////////////////////////////////////////////
             //Perform word limit validation here
             // $postDescriptionMaxLength
-            if (validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit)){
+            if (validateWordCount($postContentEditorValue.val(),100)){
                 e.preventDefault();
                 e.stopPropagation();
                 e.stopImmediatePropagation();
@@ -370,7 +358,7 @@ snax.frontendSubmission = {};
             /////////////////////////////////////////////////////////////
             //Perform word limit validation here
             // $postDescriptionMaxLength //we might use it later
-            if ( validateWordCount($postContentEditorValue.val(),$postDescriptionWordLimit)){
+            if ( validateWordCount($postContentEditorValue.val(),100)){
                 //this means is_error flag is set to true. So we prevent further submission actions.
                 e.preventDefault();
                 e.stopPropagation();
