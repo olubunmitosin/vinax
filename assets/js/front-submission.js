@@ -296,11 +296,7 @@ snax.frontendSubmission = {};
     function showWordsCountNotice (string, wordLimit) {
 
         //filter the post contents to remove unwanted tags
-        string = filterString(string);
-
-        var wordsCount = string,//string.split(" ").length,
-            //below is the current input character length. we can use it later
-            charCount = string.length;
+        var wordsCount = filterString(string);
 
         //first we need to clear our notification boc container
         $postContentNoticeBox.html('');
@@ -315,12 +311,14 @@ snax.frontendSubmission = {};
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. Thanks for your obedience'
             );
+            $('.snax-button-publish-post').removeClass('hide');
             return false;
 
         }else {
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. You must enter exactly <span>'+ wordLimit +'</span> words'
             );
+            $('.snax-button-publish-post').addClass('hide');
             return false;
         }
     }
