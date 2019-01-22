@@ -311,14 +311,14 @@ snax.frontendSubmission = {};
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. Thanks for your obedience'
             );
-            $('.snax-button-publish-post').removeClass('hide');
+            $(document).find('.snax-button-publish-post').removeClass('hide');
             return false;
 
         }else {
             $postContentNoticeBox.html(
                 'You have entered <span>'+ wordsCount +'</span> number of words. You must enter exactly <span>'+ wordLimit +'</span> words'
             );
-            $('.snax-button-publish-post').addClass('hide');
+            $(document).find('.snax-button-publish-post').addClass('hide');
             return false;
         }
     }
